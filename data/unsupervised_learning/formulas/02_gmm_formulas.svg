@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+<title>Gaussian Mixture Models : carte des formules</title>
+<desc>Soft clustering probabiliste avec moyennes, covariances et poids.</desc>
+<rect x="0" y="0" width="1120" height="680" rx="18" fill="#fbfaf7"/>
+<rect x="16" y="16" width="1088" height="648" rx="14" fill="none" stroke="#dbc9a5" stroke-width="2"/>
+<rect x="36" y="34" width="8" height="50" rx="4" fill="#8a6424"/>
+<text x="60" y="58" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="28" font-weight="700" fill="#3d321f">Gaussian Mixture Models : carte des formules</text>
+<text x="60" y="82" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" fill="#6f624d">Soft clustering probabiliste avec moyennes, covariances et poids.</text>
+<rect x="36" y="108" width="1048" height="80" rx="10" fill="#ffffff" stroke="#dbc9a5" stroke-width="1"/>
+<text x="58" y="139" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#55442b">Mélange gaussien</text>
+<text x="360" y="139" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">p(x) = Σₖ πₖ N(x | μₖ, Σₖ)</text>
+<text x="360" y="170" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#6f624d">Le dataset est vu comme une somme de distributions gaussiennes.</text>
+<rect x="36" y="198" width="1048" height="80" rx="10" fill="#f7f1e6" stroke="#dbc9a5" stroke-width="1"/>
+<text x="58" y="229" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#55442b">Responsabilité</text>
+<text x="360" y="229" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">γᵢₖ = πₖN(xᵢ|μₖ,Σₖ) / ΣⱼπⱼN(xᵢ|μⱼ,Σⱼ)</text>
+<text x="360" y="260" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#6f624d">Probabilité que le cluster k ait généré le point i.</text>
+<rect x="36" y="288" width="1048" height="80" rx="10" fill="#ffffff" stroke="#dbc9a5" stroke-width="1"/>
+<text x="58" y="319" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#55442b">Centre</text>
+<text x="360" y="319" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">μₖ</text>
+<text x="360" y="350" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#6f624d">Position moyenne du cluster k.</text>
+<rect x="36" y="378" width="1048" height="80" rx="10" fill="#f7f1e6" stroke="#dbc9a5" stroke-width="1"/>
+<text x="58" y="409" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#55442b">Covariance</text>
+<text x="360" y="409" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">Σₖ</text>
+<text x="360" y="440" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#6f624d">Forme, étalement et orientation du cluster.</text>
+<rect x="36" y="468" width="1048" height="80" rx="10" fill="#ffffff" stroke="#dbc9a5" stroke-width="1"/>
+<text x="58" y="499" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#55442b">Poids</text>
+<text x="360" y="499" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">πₖ ≥ 0  et  Σₖπₖ = 1</text>
+<text x="360" y="530" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#6f624d">Proportion attendue de points dans chaque cluster.</text>
+<rect x="36" y="558" width="1048" height="80" rx="10" fill="#f7f1e6" stroke="#dbc9a5" stroke-width="1"/>
+<text x="58" y="589" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#55442b">Mahalanobis</text>
+<text x="360" y="589" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">d_M(x,μ) = sqrt((x - μ)ᵀ Σ⁻¹ (x - μ))</text>
+<text x="360" y="620" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#6f624d">Distance ajustée par la forme du cluster.</text>
+</svg>

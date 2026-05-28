@@ -259,6 +259,8 @@ Properties:
 - All probabilities sum to 1.
 - The loss is categorical cross-entropy.
 
+![Logistic regression formula map](formulas_en/01_logistic_formulas.svg)
+
 ### When to Use Logistic Regression
 
 Use logistic regression when:
@@ -543,6 +545,8 @@ If the model says 0.80 probability, does the event happen about 80% of the time?
 
 Two models can have the same AUC even if one outputs useful probabilities and the other outputs compressed scores like `0.51` and `0.49`.
 
+![Classification metrics formula map](formulas_en/02_classification_metrics.svg)
+
 ### Precision-Recall Curve
 
 A precision-recall curve plots:
@@ -779,6 +783,8 @@ where:
 
 Higher `alpha` means stronger pruning and a smaller tree.
 
+![Decision trees formula map](formulas_en/03_tree_formulas.svg)
+
 In scikit-learn:
 
 ```python
@@ -975,6 +981,8 @@ This formula explains random forests:
 - Random feature selection lowers `rho`.
 
 ![Variance reduction by averaging many noisy tree predictions](figures_en/13_variance_reduction.svg)
+
+![Random forests formula map](formulas_en/04_random_forest_formulas.svg)
 
 ### Random Forest Algorithm
 

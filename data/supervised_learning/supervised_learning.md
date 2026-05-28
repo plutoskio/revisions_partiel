@@ -259,6 +259,8 @@ Propriétés :
 - Toutes les probabilités somment à 1.
 - La perte est la categorical cross-entropy.
 
+![Carte des formules de la régression logistique](formulas_fr/01_logistic_formulas.svg)
+
 ### Quand utiliser la régression logistique
 
 Utiliser la régression logistique lorsque :
@@ -543,6 +545,8 @@ Si le modèle annonce une probabilité de 0.80, l'événement arrive-t-il enviro
 
 Deux modèles peuvent avoir la même AUC même si l'un produit des probabilités utiles et l'autre des scores compressés comme `0.51` et `0.49`.
 
+![Carte des formules des métriques de classification](formulas_fr/02_classification_metrics.svg)
+
 ### Courbe precision-recall
 
 Une courbe precision-recall trace :
@@ -779,6 +783,8 @@ où :
 
 Plus `alpha` est élevé, plus l'élagage est fort et plus l'arbre est petit.
 
+![Carte des formules des arbres de décision](formulas_fr/03_tree_formulas.svg)
+
 En scikit-learn :
 
 ```python
@@ -975,6 +981,8 @@ Cette formule explique les forêts aléatoires :
 - La sélection aléatoire des variables diminue `rho`.
 
 ![Réduction de variance en moyennant plusieurs prédictions bruitées d'arbres](figures/13_variance_reduction.svg)
+
+![Carte des formules des forêts aléatoires](formulas_fr/04_random_forest_formulas.svg)
 
 ### Algorithme de la forêt aléatoire
 
@@ -1233,4 +1241,3 @@ Forêts aléatoires :
 - Les sous-ensembles aléatoires de variables décorrèlent les arbres.
 - L'agrégation réduit la variance.
 - Fortes sur données tabulaires non linéaires, moins interprétables qu'un seul arbre.
-

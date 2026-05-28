@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="770" viewBox="0 0 1120 770" role="img" aria-labelledby="title desc">
+<title>Clustering : carte des formules</title>
+<desc>Assignments, distances, inertie, scaling et silhouette.</desc>
+<rect x="0" y="0" width="1120" height="770" rx="18" fill="#fbfaf7"/>
+<rect x="16" y="16" width="1088" height="738" rx="14" fill="none" stroke="#dbc9a5" stroke-width="2"/>
+<rect x="36" y="34" width="8" height="50" rx="4" fill="#8a6424"/>
+<text x="60" y="58" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="28" font-weight="700" fill="#3d321f">Clustering : carte des formules</text>
+<text x="60" y="82" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" fill="#6f624d">Assignments, distances, inertie, scaling et silhouette.</text>
+<rect x="36" y="108" width="1048" height="80" rx="10" fill="#ffffff" stroke="#dbc9a5" stroke-width="1"/>
+<text x="58" y="139" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#55442b">Hard clustering</text>
+<text x="360" y="139" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">P(Cₖ | xᵢ) ∈ {0, 1}</text>
+<text x="360" y="170" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#6f624d">Chaque point appartient à un seul cluster.</text>
+<rect x="36" y="198" width="1048" height="80" rx="10" fill="#f7f1e6" stroke="#dbc9a5" stroke-width="1"/>
+<text x="58" y="229" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#55442b">Soft clustering</text>
+<text x="360" y="229" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">P(Cₖ | xᵢ) ∈ [0, 1]</text>
+<text x="360" y="260" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#6f624d">Chaque point reçoit des probabilités d&#x27;appartenance.</text>
+<rect x="36" y="288" width="1048" height="80" rx="10" fill="#ffffff" stroke="#dbc9a5" stroke-width="1"/>
+<text x="58" y="319" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#55442b">Objectif K-Means</text>
+<text x="360" y="319" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">min Σₖ Σ_{xᵢ∈Cₖ} ||xᵢ - μₖ||²</text>
+<text x="360" y="350" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#6f624d">Minimise la distance au carré aux centroïdes.</text>
+<rect x="36" y="378" width="1048" height="80" rx="10" fill="#f7f1e6" stroke="#dbc9a5" stroke-width="1"/>
+<text x="58" y="409" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#55442b">WCSS / inertie</text>
+<text x="360" y="409" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">Σ distances²(point, centroïde du cluster)</text>
+<text x="360" y="440" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#6f624d">Diminue toujours quand K augmente.</text>
+<rect x="36" y="468" width="1048" height="80" rx="10" fill="#ffffff" stroke="#dbc9a5" stroke-width="1"/>
+<text x="58" y="499" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#55442b">Distance euclidienne</text>
+<text x="360" y="499" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">d(x,c) = sqrt(Σⱼ (xⱼ - cⱼ)²)</text>
+<text x="360" y="530" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#6f624d">Très sensible au scaling.</text>
+<rect x="36" y="558" width="1048" height="80" rx="10" fill="#f7f1e6" stroke="#dbc9a5" stroke-width="1"/>
+<text x="58" y="589" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#55442b">Standardisation</text>
+<text x="360" y="589" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">x_scaled = (x - mean) / standard_deviation</text>
+<text x="360" y="620" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#6f624d">Met les variables sur une échelle comparable.</text>
+<rect x="36" y="648" width="1048" height="80" rx="10" fill="#ffffff" stroke="#dbc9a5" stroke-width="1"/>
+<text x="58" y="679" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#55442b">Silhouette</text>
+<text x="360" y="679" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">s(i) = (b(i) - a(i)) / max(a(i), b(i))</text>
+<text x="360" y="710" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#6f624d">a = distance intra-cluster ; b = meilleur autre cluster.</text>
+</svg>

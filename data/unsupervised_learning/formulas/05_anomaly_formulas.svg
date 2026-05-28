@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="728" viewBox="0 0 1120 728" role="img" aria-labelledby="title desc">
+<title>Anomalies : carte des formules</title>
+<desc>Seuils, frontière normale, isolation et densité locale.</desc>
+<rect x="0" y="0" width="1120" height="728" rx="18" fill="#fbfaf7"/>
+<rect x="16" y="16" width="1088" height="696" rx="14" fill="none" stroke="#dbc9a5" stroke-width="2"/>
+<rect x="36" y="34" width="8" height="50" rx="4" fill="#8a6424"/>
+<text x="60" y="58" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="28" font-weight="700" fill="#3d321f">Anomalies : carte des formules</text>
+<text x="60" y="82" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" fill="#6f624d">Seuils, frontière normale, isolation et densité locale.</text>
+<rect x="36" y="108" width="1048" height="80" rx="10" fill="#ffffff" stroke="#dbc9a5" stroke-width="1"/>
+<text x="58" y="139" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#55442b">Contamination</text>
+<text x="360" y="139" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">contamination = proportion attendue d&#x27;anomalies</text>
+<text x="360" y="170" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#6f624d">Influence le seuil de décision.</text>
+<rect x="36" y="198" width="1048" height="104" rx="10" fill="#f7f1e6" stroke="#dbc9a5" stroke-width="1"/>
+<text x="58" y="229" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#55442b">One-Class SVM</text>
+<text x="360" y="229" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">f(x) ≥ 0 ⇒ normal</text>
+<text x="360" y="253" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">f(x) &lt; 0 ⇒ anomalie</text>
+<text x="360" y="284" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#6f624d">Apprend une frontière autour des données normales.</text>
+<rect x="36" y="312" width="1048" height="80" rx="10" fill="#ffffff" stroke="#dbc9a5" stroke-width="1"/>
+<text x="58" y="343" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#55442b">Paramètre ν</text>
+<text x="360" y="343" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">ν ≈ borne sur la fraction d&#x27;anomalies autorisées</text>
+<text x="360" y="374" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#6f624d">Contrôle aussi la souplesse de la frontière.</text>
+<rect x="36" y="402" width="1048" height="80" rx="10" fill="#f7f1e6" stroke="#dbc9a5" stroke-width="1"/>
+<text x="58" y="433" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#55442b">Isolation Forest</text>
+<text x="360" y="433" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">E[h(x)] court ⇒ anomalie</text>
+<text x="360" y="464" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#6f624d">Un point rare et différent s&#x27;isole en peu de splits.</text>
+<rect x="36" y="492" width="1048" height="80" rx="10" fill="#ffffff" stroke="#dbc9a5" stroke-width="1"/>
+<text x="58" y="523" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#55442b">LOF</text>
+<text x="360" y="523" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">LOFₖ(x) = densité_locale(voisins) / densité_locale(x)</text>
+<text x="360" y="554" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#6f624d">Compare la densité du point à celle de ses voisins.</text>
+<rect x="36" y="582" width="1048" height="104" rx="10" fill="#f7f1e6" stroke="#dbc9a5" stroke-width="1"/>
+<text x="58" y="613" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#55442b">Interprétation LOF</text>
+<text x="360" y="613" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">LOF ≈ 1 ⇒ normal</text>
+<text x="360" y="637" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">LOF &gt;&gt; 1 ⇒ suspect</text>
+<text x="360" y="668" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#6f624d">Utile pour anomalies locales/contextuelles.</text>
+</svg>

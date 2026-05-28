@@ -175,6 +175,8 @@ Il varie entre `-1` et `1` :
 
 ![Intuition du silhouette score](figures/05_silhouette_intuition.svg)
 
+![Carte des formules du clustering](formulas/01_clustering_formulas.svg)
+
 ### Hyperparamètres importants
 
 `n_clusters` :
@@ -341,6 +343,8 @@ Intuition :
 | `full` | Covariance libre | Plus flexible, plus risqué |
 
 ![Types de covariance dans GMM](figures/08_gmm_covariance_types.svg)
+
+![Carte des formules de Gaussian Mixture Models](formulas/02_gmm_formulas.svg)
 
 ### Quand utiliser GMM
 
@@ -521,6 +525,8 @@ Pour choisir `eps`, on peut tracer la distance au k-ième plus proche voisin pou
 Le coude de cette courbe donne souvent une bonne valeur de `eps`.
 
 ![K-distance graph pour choisir eps](figures/12_k_distance_eps.svg)
+
+![Carte des formules du clustering hiérarchique et DBSCAN](formulas/03_hierarchical_dbscan_formulas.svg)
 
 ### Limites de DBSCAN
 
@@ -740,6 +746,8 @@ La variance cumulée montre la proportion totale d'information conservée en gar
 En business, on garde souvent assez de composantes pour expliquer environ 70% à 90% de la variance, selon le contexte.
 
 ![Scree plot et variance cumulée](figures/15_scree_cumulative_variance.svg)
+
+![Carte des formules de PCA](formulas/04_pca_formulas.svg)
 
 ### Cercle de corrélation
 
@@ -1141,6 +1149,8 @@ LOF >> 1
 
 Il est suspect.
 
+![Carte des formules de détection d'anomalies](formulas/05_anomaly_formulas.svg)
+
 ### Hyperparamètre principal
 
 `n_neighbors` :
@@ -1322,4 +1332,3 @@ Détection d'anomalies :
 - Isolation Forest isole rapidement les points rares et différents.
 - LOF détecte les anomalies locales via comparaison de densité.
 - Le seuil dépend du coût métier des faux positifs et faux négatifs.
-

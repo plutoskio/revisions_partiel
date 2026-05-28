@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="794" viewBox="0 0 1120 794" role="img" aria-labelledby="title desc">
+<title>Arbres de décision : carte des formules</title>
+<desc>Impureté, choix du split, feuilles de régression, élagage et importance.</desc>
+<rect x="0" y="0" width="1120" height="794" rx="18" fill="#f8fbff"/>
+<rect x="16" y="16" width="1088" height="762" rx="14" fill="none" stroke="#b9d4f5" stroke-width="2"/>
+<rect x="36" y="34" width="8" height="50" rx="4" fill="#286fb4"/>
+<text x="60" y="58" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="28" font-weight="700" fill="#17324d">Arbres de décision : carte des formules</text>
+<text x="60" y="82" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" fill="#50657a">Impureté, choix du split, feuilles de régression, élagage et importance.</text>
+<rect x="36" y="108" width="1048" height="80" rx="10" fill="#ffffff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="139" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Impureté de Gini</text>
+<text x="360" y="139" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">Gini(D) = 1 - Σᵢ pᵢ²</text>
+<text x="360" y="170" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">0 signifie pur ; plus haut signifie plus mélangé.</text>
+<rect x="36" y="198" width="1048" height="104" rx="10" fill="#eef6ff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="229" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Split pondéré</text>
+<text x="360" y="229" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">Gini_split = (|D_left|/|D|)Gini(D_left)</text>
+<text x="360" y="253" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">           + (|D_right|/|D|)Gini(D_right)</text>
+<text x="360" y="284" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">CART choisit le split avec l&#x27;impureté pondérée la plus faible.</text>
+<rect x="36" y="312" width="1048" height="80" rx="10" fill="#ffffff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="343" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Entropie</text>
+<text x="360" y="343" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">H(D) = -Σᵢ pᵢ log₂(pᵢ)</text>
+<text x="360" y="374" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Autre mesure d&#x27;impureté.</text>
+<rect x="36" y="402" width="1048" height="80" rx="10" fill="#eef6ff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="433" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Information gain</text>
+<text x="360" y="433" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">IG(D, split) = H(D) - weighted_child_entropy</text>
+<text x="360" y="464" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Mesure la baisse de désordre après un split.</text>
+<rect x="36" y="492" width="1048" height="80" rx="10" fill="#ffffff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="523" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Arbre de régression</text>
+<text x="360" y="523" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">MSE(t) = (1/|D_t|) Σ_{i∈D_t}(yᵢ - ȳ_t)²</text>
+<text x="360" y="554" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Les feuilles prédisent la moyenne de la cible.</text>
+<rect x="36" y="582" width="1048" height="80" rx="10" fill="#eef6ff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="613" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Élagage</text>
+<text x="360" y="613" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">R_α(T) = R(T) + α|T|</text>
+<text x="360" y="644" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">α pénalise la complexité de l&#x27;arbre.</text>
+<rect x="36" y="672" width="1048" height="80" rx="10" fill="#ffffff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="703" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Importance</text>
+<text x="360" y="703" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">Σ baisses d&#x27;impureté pondérées causées par la variable</text>
+<text x="360" y="734" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Biaisée vers les variables avec beaucoup de splits possibles.</text>
+</svg>

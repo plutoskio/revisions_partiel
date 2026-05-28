@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="770" viewBox="0 0 1120 770" role="img" aria-labelledby="title desc">
+<title>Hiérarchique + DBSCAN : carte des formules</title>
+<desc>Distances entre clusters et définition d&#x27;une zone dense.</desc>
+<rect x="0" y="0" width="1120" height="770" rx="18" fill="#fbfaf7"/>
+<rect x="16" y="16" width="1088" height="738" rx="14" fill="none" stroke="#dbc9a5" stroke-width="2"/>
+<rect x="36" y="34" width="8" height="50" rx="4" fill="#8a6424"/>
+<text x="60" y="58" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="28" font-weight="700" fill="#3d321f">Hiérarchique + DBSCAN : carte des formules</text>
+<text x="60" y="82" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" fill="#6f624d">Distances entre clusters et définition d&#x27;une zone dense.</text>
+<rect x="36" y="108" width="1048" height="80" rx="10" fill="#ffffff" stroke="#dbc9a5" stroke-width="1"/>
+<text x="58" y="139" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#55442b">Single linkage</text>
+<text x="360" y="139" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">d(A,B) = min d(a,b),  a∈A, b∈B</text>
+<text x="360" y="170" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#6f624d">Fusionne selon les deux points les plus proches.</text>
+<rect x="36" y="198" width="1048" height="80" rx="10" fill="#f7f1e6" stroke="#dbc9a5" stroke-width="1"/>
+<text x="58" y="229" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#55442b">Complete linkage</text>
+<text x="360" y="229" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">d(A,B) = max d(a,b),  a∈A, b∈B</text>
+<text x="360" y="260" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#6f624d">Fusionne selon les deux points les plus éloignés.</text>
+<rect x="36" y="288" width="1048" height="80" rx="10" fill="#ffffff" stroke="#dbc9a5" stroke-width="1"/>
+<text x="58" y="319" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#55442b">Average linkage</text>
+<text x="360" y="319" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">d(A,B) = mean d(a,b),  a∈A, b∈B</text>
+<text x="360" y="350" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#6f624d">Compromis plus stable.</text>
+<rect x="36" y="378" width="1048" height="80" rx="10" fill="#f7f1e6" stroke="#dbc9a5" stroke-width="1"/>
+<text x="58" y="409" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#55442b">Ward</text>
+<text x="360" y="409" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">fusion qui augmente le moins la variance intra-cluster</text>
+<text x="360" y="440" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#6f624d">Proche de l&#x27;idée d&#x27;inertie.</text>
+<rect x="36" y="468" width="1048" height="80" rx="10" fill="#ffffff" stroke="#dbc9a5" stroke-width="1"/>
+<text x="58" y="499" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#55442b">Voisinage DBSCAN</text>
+<text x="360" y="499" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">N_eps(x) = {xᵢ : d(x, xᵢ) ≤ eps}</text>
+<text x="360" y="530" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#6f624d">Tous les points dans le rayon eps.</text>
+<rect x="36" y="558" width="1048" height="80" rx="10" fill="#f7f1e6" stroke="#dbc9a5" stroke-width="1"/>
+<text x="58" y="589" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#55442b">Core point</text>
+<text x="360" y="589" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">|N_eps(x)| ≥ MinPts</text>
+<text x="360" y="620" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#6f624d">Un core point peut étendre un cluster.</text>
+<rect x="36" y="648" width="1048" height="80" rx="10" fill="#ffffff" stroke="#dbc9a5" stroke-width="1"/>
+<text x="58" y="679" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#55442b">Noise</text>
+<text x="360" y="679" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">ni core, ni border</text>
+<text x="360" y="710" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#6f624d">Point traité comme anomalie/bruit.</text>
+</svg>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+<title>Forêts aléatoires : carte des formules</title>
+<desc>Vote, moyenne, intuition out-of-bag et réduction de variance.</desc>
+<rect x="0" y="0" width="1120" height="680" rx="18" fill="#f8fbff"/>
+<rect x="16" y="16" width="1088" height="648" rx="14" fill="none" stroke="#b9d4f5" stroke-width="2"/>
+<rect x="36" y="34" width="8" height="50" rx="4" fill="#286fb4"/>
+<text x="60" y="58" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="28" font-weight="700" fill="#17324d">Forêts aléatoires : carte des formules</text>
+<text x="60" y="82" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" fill="#50657a">Vote, moyenne, intuition out-of-bag et réduction de variance.</text>
+<rect x="36" y="108" width="1048" height="80" rx="10" fill="#ffffff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="139" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Classification</text>
+<text x="360" y="139" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">ŷ = vote_majoritaire(T₁(x), T₂(x), ..., T_B(x))</text>
+<text x="360" y="170" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Chaque arbre vote ; la forêt prédit la classe majoritaire.</text>
+<rect x="36" y="198" width="1048" height="80" rx="10" fill="#eef6ff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="229" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Régression</text>
+<text x="360" y="229" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">ŷ = (1/B) Σ_b T_b(x)</text>
+<text x="360" y="260" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">On moyenne les prédictions des arbres.</text>
+<rect x="36" y="288" width="1048" height="80" rx="10" fill="#ffffff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="319" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Arbres indépendants</text>
+<text x="360" y="319" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">Var(moyenne) = σ² / B</text>
+<text x="360" y="350" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Moyenner beaucoup de modèles indépendants réduit la variance.</text>
+<rect x="36" y="378" width="1048" height="80" rx="10" fill="#eef6ff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="409" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Arbres corrélés</text>
+<text x="360" y="409" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">Var(forest) = ρσ² + ((1 - ρ)/B)σ²</text>
+<text x="360" y="440" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Si les arbres sont corrélés, la variance ne descend pas sous ρσ².</text>
+<rect x="36" y="468" width="1048" height="80" rx="10" fill="#ffffff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="499" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Out-of-bag</text>
+<text x="360" y="499" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">P(ligne non tirée par un arbre) ≈ e⁻¹ ≈ 36.8%</text>
+<text x="360" y="530" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Les lignes hors bootstrap peuvent valider cet arbre.</text>
+<rect x="36" y="558" width="1048" height="80" rx="10" fill="#eef6ff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="589" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Variables aléatoires</text>
+<text x="360" y="589" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">moins de variables communes ⇒ ρ plus faible</text>
+<text x="360" y="620" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Le mécanisme clé qui décorrèle les arbres.</text>
+</svg>

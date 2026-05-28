@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="794" viewBox="0 0 1120 794" role="img" aria-labelledby="title desc">
+<title>Régression logistique : carte des formules</title>
+<desc>Du score linéaire à la probabilité, la perte, l&#x27;optimisation et softmax.</desc>
+<rect x="0" y="0" width="1120" height="794" rx="18" fill="#f8fbff"/>
+<rect x="16" y="16" width="1088" height="762" rx="14" fill="none" stroke="#b9d4f5" stroke-width="2"/>
+<rect x="36" y="34" width="8" height="50" rx="4" fill="#286fb4"/>
+<text x="60" y="58" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="28" font-weight="700" fill="#17324d">Régression logistique : carte des formules</text>
+<text x="60" y="82" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" fill="#50657a">Du score linéaire à la probabilité, la perte, l&#x27;optimisation et softmax.</text>
+<rect x="36" y="108" width="1048" height="80" rx="10" fill="#ffffff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="139" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Score linéaire</text>
+<text x="360" y="139" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">z = β₀ + β₁x₁ + ... + βₚxₚ</text>
+<text x="360" y="170" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Score non borné avant transformation en probabilité.</text>
+<rect x="36" y="198" width="1048" height="80" rx="10" fill="#eef6ff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="229" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Sigmoïde</text>
+<text x="360" y="229" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">σ(z) = 1 / (1 + exp(-z))</text>
+<text x="360" y="260" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Transforme n&#x27;importe quel score réel en valeur entre 0 et 1.</text>
+<rect x="36" y="288" width="1048" height="80" rx="10" fill="#ffffff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="319" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Probabilité</text>
+<text x="360" y="319" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">P(y = 1 | X) = σ(β₀ + β₁x₁ + ... + βₚxₚ)</text>
+<text x="360" y="350" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Le modèle prédit une probabilité, puis un seuil crée la classe.</text>
+<rect x="36" y="378" width="1048" height="80" rx="10" fill="#eef6ff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="409" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Log-odds</text>
+<text x="360" y="409" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">log(p / (1 - p)) = β₀ + β₁x₁ + ... + βₚxₚ</text>
+<text x="360" y="440" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Les coefficients sont linéaires sur les log-odds, pas sur la probabilité.</text>
+<rect x="36" y="468" width="1048" height="104" rx="10" fill="#ffffff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="499" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Cross-entropy</text>
+<text x="360" y="499" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">J(β) = -(1/n) Σᵢ [yᵢ log(ŷᵢ)</text>
+<text x="360" y="523" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">      + (1 - yᵢ) log(1 - ŷᵢ)]</text>
+<text x="360" y="554" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Une prédiction confiante mais fausse est fortement pénalisée.</text>
+<rect x="36" y="582" width="1048" height="80" rx="10" fill="#eef6ff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="613" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Descente de gradient</text>
+<text x="360" y="613" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">β_new = β_old - η · ∇J(β)</text>
+<text x="360" y="644" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">η est le learning rate.</text>
+<rect x="36" y="672" width="1048" height="80" rx="10" fill="#ffffff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="703" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Softmax</text>
+<text x="360" y="703" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">P(y = k | X) = exp(zₖ) / Σⱼ exp(zⱼ)</text>
+<text x="360" y="734" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Extension multi-classe : les probabilités somment à 1.</text>
+</svg>

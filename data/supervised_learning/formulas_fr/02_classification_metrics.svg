@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="884" viewBox="0 0 1120 884" role="img" aria-labelledby="title desc">
+<title>Métriques de classification : carte des formules</title>
+<desc>Même matrice de confusion, mais dénominateurs et objectifs différents.</desc>
+<rect x="0" y="0" width="1120" height="884" rx="18" fill="#f8fbff"/>
+<rect x="16" y="16" width="1088" height="852" rx="14" fill="none" stroke="#b9d4f5" stroke-width="2"/>
+<rect x="36" y="34" width="8" height="50" rx="4" fill="#286fb4"/>
+<text x="60" y="58" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="28" font-weight="700" fill="#17324d">Métriques de classification : carte des formules</text>
+<text x="60" y="82" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" fill="#50657a">Même matrice de confusion, mais dénominateurs et objectifs différents.</text>
+<rect x="36" y="108" width="1048" height="80" rx="10" fill="#ffffff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="139" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Accuracy</text>
+<text x="360" y="139" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">(TP + TN) / (TP + TN + FP + FN)</text>
+<text x="360" y="170" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Part de toutes les prédictions qui sont correctes.</text>
+<rect x="36" y="198" width="1048" height="80" rx="10" fill="#eef6ff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="229" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Precision</text>
+<text x="360" y="229" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">TP / (TP + FP)</text>
+<text x="360" y="260" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Parmi les positifs prédits, combien sont vraiment positifs ?</text>
+<rect x="36" y="288" width="1048" height="80" rx="10" fill="#ffffff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="319" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Recall / TPR</text>
+<text x="360" y="319" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">TP / (TP + FN)</text>
+<text x="360" y="350" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Parmi les vrais positifs, combien le modèle trouve-t-il ?</text>
+<rect x="36" y="378" width="1048" height="104" rx="10" fill="#eef6ff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="409" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Specificity / FPR</text>
+<text x="360" y="409" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">Specificity = TN / (TN + FP)</text>
+<text x="360" y="433" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">FPR = FP / (FP + TN) = 1 - specificity</text>
+<text x="360" y="464" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Performance sur la classe négative.</text>
+<rect x="36" y="492" width="1048" height="80" rx="10" fill="#ffffff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="523" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">F1</text>
+<text x="360" y="523" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">2 · precision · recall / (precision + recall)</text>
+<text x="360" y="554" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Moyenne harmonique ; pénalise le déséquilibre precision/recall.</text>
+<rect x="36" y="582" width="1048" height="80" rx="10" fill="#eef6ff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="613" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">F-beta</text>
+<text x="360" y="613" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">(1 + β²) · precision · recall / (β² · precision + recall)</text>
+<text x="360" y="644" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">β &gt; 1 favorise recall ; β &lt; 1 favorise precision.</text>
+<rect x="36" y="672" width="1048" height="80" rx="10" fill="#ffffff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="703" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Seuil par coût</text>
+<text x="360" y="703" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">Coût total = FP · Coût(FP) + FN · Coût(FN)</text>
+<text x="360" y="734" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Choisir le seuil selon le coût métier, pas automatiquement 0.5.</text>
+<rect x="36" y="762" width="1048" height="80" rx="10" fill="#eef6ff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="793" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">AUC</text>
+<text x="360" y="793" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">P(score_positif &gt; score_négatif)</text>
+<text x="360" y="824" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Qualité de ranking, pas calibration des probabilités.</text>
+</svg>

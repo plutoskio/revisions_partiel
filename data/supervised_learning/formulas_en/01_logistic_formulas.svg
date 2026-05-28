@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="794" viewBox="0 0 1120 794" role="img" aria-labelledby="title desc">
+<title>Logistic Regression: Formula Map</title>
+<desc>From linear score to probability, loss, optimization, and softmax.</desc>
+<rect x="0" y="0" width="1120" height="794" rx="18" fill="#f8fbff"/>
+<rect x="16" y="16" width="1088" height="762" rx="14" fill="none" stroke="#b9d4f5" stroke-width="2"/>
+<rect x="36" y="34" width="8" height="50" rx="4" fill="#286fb4"/>
+<text x="60" y="58" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="28" font-weight="700" fill="#17324d">Logistic Regression: Formula Map</text>
+<text x="60" y="82" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" fill="#50657a">From linear score to probability, loss, optimization, and softmax.</text>
+<rect x="36" y="108" width="1048" height="80" rx="10" fill="#ffffff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="139" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Linear score</text>
+<text x="360" y="139" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">z = β₀ + β₁x₁ + ... + βₚxₚ</text>
+<text x="360" y="170" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Unbounded score before converting to a probability.</text>
+<rect x="36" y="198" width="1048" height="80" rx="10" fill="#eef6ff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="229" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Sigmoid</text>
+<text x="360" y="229" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">σ(z) = 1 / (1 + exp(-z))</text>
+<text x="360" y="260" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Squashes any real score into the interval [0, 1].</text>
+<rect x="36" y="288" width="1048" height="80" rx="10" fill="#ffffff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="319" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Probability</text>
+<text x="360" y="319" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">P(y = 1 | X) = σ(β₀ + β₁x₁ + ... + βₚxₚ)</text>
+<text x="360" y="350" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">The model predicts a probability, then a threshold creates a class label.</text>
+<rect x="36" y="378" width="1048" height="80" rx="10" fill="#eef6ff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="409" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Log-odds</text>
+<text x="360" y="409" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">log(p / (1 - p)) = β₀ + β₁x₁ + ... + βₚxₚ</text>
+<text x="360" y="440" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Coefficients are linear on log-odds, not directly on probability.</text>
+<rect x="36" y="468" width="1048" height="104" rx="10" fill="#ffffff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="499" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Cross-entropy</text>
+<text x="360" y="499" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">J(β) = -(1/n) Σᵢ [yᵢ log(ŷᵢ)</text>
+<text x="360" y="523" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">      + (1 - yᵢ) log(1 - ŷᵢ)]</text>
+<text x="360" y="554" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Confident wrong predictions receive a large penalty.</text>
+<rect x="36" y="582" width="1048" height="80" rx="10" fill="#eef6ff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="613" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Gradient step</text>
+<text x="360" y="613" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">β_new = β_old - η · ∇J(β)</text>
+<text x="360" y="644" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">η is the learning rate.</text>
+<rect x="36" y="672" width="1048" height="80" rx="10" fill="#ffffff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="703" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Softmax</text>
+<text x="360" y="703" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">P(y = k | X) = exp(zₖ) / Σⱼ exp(zⱼ)</text>
+<text x="360" y="734" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Multi-class extension: all class probabilities sum to 1.</text>
+</svg>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="794" viewBox="0 0 1120 794" role="img" aria-labelledby="title desc">
+<title>Decision Trees: Formula Map</title>
+<desc>Impurity, split choice, regression leaves, pruning, and importance.</desc>
+<rect x="0" y="0" width="1120" height="794" rx="18" fill="#f8fbff"/>
+<rect x="16" y="16" width="1088" height="762" rx="14" fill="none" stroke="#b9d4f5" stroke-width="2"/>
+<rect x="36" y="34" width="8" height="50" rx="4" fill="#286fb4"/>
+<text x="60" y="58" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="28" font-weight="700" fill="#17324d">Decision Trees: Formula Map</text>
+<text x="60" y="82" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" fill="#50657a">Impurity, split choice, regression leaves, pruning, and importance.</text>
+<rect x="36" y="108" width="1048" height="80" rx="10" fill="#ffffff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="139" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Gini impurity</text>
+<text x="360" y="139" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">Gini(D) = 1 - Σᵢ pᵢ²</text>
+<text x="360" y="170" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">0 means pure; higher means more mixed.</text>
+<rect x="36" y="198" width="1048" height="104" rx="10" fill="#eef6ff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="229" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Weighted split</text>
+<text x="360" y="229" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">Gini_split = (|D_left|/|D|)Gini(D_left)</text>
+<text x="360" y="253" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">           + (|D_right|/|D|)Gini(D_right)</text>
+<text x="360" y="284" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">CART chooses the split with the lowest weighted impurity.</text>
+<rect x="36" y="312" width="1048" height="80" rx="10" fill="#ffffff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="343" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Entropy</text>
+<text x="360" y="343" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">H(D) = -Σᵢ pᵢ log₂(pᵢ)</text>
+<text x="360" y="374" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Alternative impurity measure.</text>
+<rect x="36" y="402" width="1048" height="80" rx="10" fill="#eef6ff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="433" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Information gain</text>
+<text x="360" y="433" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">IG(D, split) = H(D) - weighted_child_entropy</text>
+<text x="360" y="464" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">How much disorder decreases after splitting.</text>
+<rect x="36" y="492" width="1048" height="80" rx="10" fill="#ffffff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="523" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Regression tree</text>
+<text x="360" y="523" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">MSE(t) = (1/|D_t|) Σ_{i∈D_t}(yᵢ - ȳ_t)²</text>
+<text x="360" y="554" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Leaves predict the mean target value.</text>
+<rect x="36" y="582" width="1048" height="80" rx="10" fill="#eef6ff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="613" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Pruning</text>
+<text x="360" y="613" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">R_α(T) = R(T) + α|T|</text>
+<text x="360" y="644" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">α penalizes tree complexity.</text>
+<rect x="36" y="672" width="1048" height="80" rx="10" fill="#ffffff" stroke="#b9d4f5" stroke-width="1"/>
+<text x="58" y="703" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Importance</text>
+<text x="360" y="703" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#111827">Σ weighted impurity decreases caused by feature</text>
+<text x="360" y="734" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Biased toward variables with many possible split points.</text>
+</svg>
