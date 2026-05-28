@@ -8,12 +8,12 @@ text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; f
 .node { font-size: 13px; font-weight: 650; }
 </style>
 <rect x="0" y="0" width="760" height="470" fill="#ffffff"/>
-<text x="36.0" y="38.0" class="title" text-anchor="start">Precision, recall, and specificity look in different directions</text>
-<text x="36.0" y="60.0" class="subtitle" text-anchor="start">The metric changes depending on which group is used as the denominator.</text>
-<text x="277.5" y="94.0" class="label" text-anchor="middle">Predicted +</text>
-<text x="462.5" y="94.0" class="label" text-anchor="middle">Predicted -</text>
-<text x="167.0" y="154.0" class="label" text-anchor="end">Actual +</text>
-<text x="167.0" y="242.0" class="label" text-anchor="end">Actual -</text>
+<text x="36.0" y="38.0" class="title" text-anchor="start">Precision, recall et specificity : directions différentes</text>
+<text x="36.0" y="60.0" class="subtitle" text-anchor="start">La métrique change selon le groupe utilisé comme dénominateur.</text>
+<text x="277.5" y="94.0" class="label" text-anchor="middle">Prédit +</text>
+<text x="462.5" y="94.0" class="label" text-anchor="middle">Prédit -</text>
+<text x="167.0" y="154.0" class="label" text-anchor="end">Réel +</text>
+<text x="167.0" y="242.0" class="label" text-anchor="end">Réel -</text>
 <rect x="185.0" y="110.0" width="185.0" height="88.0" rx="8.0" fill="#dcfce7" stroke="#cbd5e1" stroke-width="1.5"/>
 <text x="277.5" y="163.0" class="title" text-anchor="middle">TP</text>
 <rect x="370.0" y="110.0" width="185.0" height="88.0" rx="8.0" fill="#ffedd5" stroke="#cbd5e1" stroke-width="1.5"/>
@@ -24,12 +24,12 @@ text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; f
 <text x="462.5" y="251.0" class="title" text-anchor="middle">TN</text>
 <rect x="179.0" y="104.0" width="197.0" height="188.0" rx="8.0" fill="none" stroke="#2563eb" stroke-width="4"/>
 <text x="277.5" y="322.0" class="node" text-anchor="middle">Precision</text>
-<text x="277.5" y="342.0" class="small" text-anchor="middle">TP / predicted positives</text>
+<text x="277.5" y="342.0" class="small" text-anchor="middle">TP / positifs prédits</text>
 <rect x="579.0" y="104.0" width="112.0" height="100.0" rx="8.0" fill="none" stroke="#7c3aed" stroke-width="4"/>
 <rect x="179.0" y="104.0" width="382.0" height="100.0" rx="8.0" fill="none" stroke="#7c3aed" stroke-width="4"/>
 <text x="667.0" y="144.0" class="node" text-anchor="middle">Recall</text>
-<text x="667.0" y="166.0" class="small" text-anchor="middle">TP / actual positives</text>
+<text x="667.0" y="166.0" class="small" text-anchor="middle">TP / positifs réels</text>
 <rect x="179.0" y="192.0" width="382.0" height="100.0" rx="8.0" fill="none" stroke="#0f766e" stroke-width="4"/>
-<text x="370.0" y="384.0" class="node" text-anchor="middle">Specificity = TN / actual negatives</text>
-<text x="370.0" y="406.0" class="small" text-anchor="middle">Precision uses predictions; recall and specificity use reality.</text>
+<text x="370.0" y="384.0" class="node" text-anchor="middle">Specificity = TN / négatifs réels</text>
+<text x="370.0" y="406.0" class="small" text-anchor="middle">Precision utilise les prédictions ; recall et specificity utilisent la réalité.</text>
 </svg>

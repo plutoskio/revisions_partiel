@@ -1,316 +1,316 @@
-# Supervised Learning Study Guide
+# Guide de révision - Apprentissage supervisé
 
-This guide is based on the course transcript covering:
+Ce guide est basé sur le transcript du cours couvrant :
 
-1. Logistic regression
-2. Model evaluation metrics
-3. Decision trees
-4. Random forests
+1. La régression logistique
+2. Les métriques d'évaluation des modèles
+3. Les arbres de décision
+4. Les forêts aléatoires
 
-The goal is not to repeat the slides word for word. The goal is to understand what each concept means, how it works, when to use it, and what traps to avoid in an exam.
-
----
-
-## 1. Big Picture: Supervised Learning
-
-Supervised learning means we have examples where the correct answer is already known.
-
-- `X`: the features, or input variables.
-- `y`: the target, or label we want to predict.
-- The model learns a function `f(X)` that predicts `y`.
-
-For classification, `y` is categorical:
-
-- Binary classification: two classes, for example fraud/not fraud, churn/stay, sick/healthy.
-- Multi-class classification: more than two classes, for example digit recognition from 0 to 9.
-
-Typical machine learning workflow:
-
-1. Define the problem and objective.
-2. Collect representative data.
-3. Split data into train/test sets to avoid data leakage.
-4. Prepare the data: cleaning, encoding, scaling, feature engineering.
-5. Train a model.
-6. Evaluate it with metrics adapted to the business problem.
-7. Deploy and monitor it.
-
-Key idea: a high score is only useful if the metric matches the real objective. For example, accuracy can be misleading for rare events like fraud.
+L'objectif n'est pas de répéter les slides mot pour mot. L'objectif est de comprendre ce que chaque concept signifie, comment il fonctionne, dans quels cas l'utiliser, et quels pièges éviter à l'examen.
 
 ---
 
-## 2. Logistic Regression
+## 1. Vue d'ensemble : apprentissage supervisé
 
-### What It Is
+L'apprentissage supervisé signifie que l'on dispose d'exemples pour lesquels la bonne réponse est déjà connue.
 
-Despite the name, logistic regression is a classification model.
+- `X` : les variables explicatives, ou variables d'entrée.
+- `y` : la cible, ou le label que l'on veut prédire.
+- Le modèle apprend une fonction `f(X)` qui prédit `y`.
 
-It predicts the probability that an observation belongs to class `1`:
+En classification, `y` est catégorielle :
+
+- Classification binaire : deux classes, par exemple fraude/non-fraude, churn/reste, malade/sain.
+- Classification multi-classe : plus de deux classes, par exemple reconnaissance de chiffres de 0 à 9.
+
+Workflow typique de machine learning :
+
+1. Définir le problème et l'objectif.
+2. Collecter des données représentatives.
+3. Séparer les données en train/test pour éviter la fuite de données.
+4. Préparer les données : nettoyage, encodage, mise à l'échelle, feature engineering.
+5. Entraîner un modèle.
+6. L'évaluer avec des métriques adaptées au problème métier.
+7. Le déployer et le surveiller.
+
+Idée clé : un score élevé n'est utile que si la métrique correspond au vrai objectif. Par exemple, l'accuracy peut être trompeuse pour des événements rares comme la fraude.
+
+---
+
+## 2. Régression logistique
+
+### Ce que c'est
+
+Malgré son nom, la régression logistique est un modèle de classification.
+
+Elle prédit la probabilité qu'une observation appartienne à la classe `1` :
 
 ```text
 P(y = 1 | X)
 ```
 
-It is a linear model because it assumes the log-odds of the positive class are a linear combination of the features.
+C'est un modèle linéaire, car il suppose que les log-odds de la classe positive sont une combinaison linéaire des variables explicatives.
 
-Use it as a baseline model because it is:
+Il faut souvent l'utiliser comme modèle de référence, car il est :
 
-- Fast to train.
-- Easy to interpret.
-- Strong on simple or mostly linear problems.
-- Useful when explainability matters, for example credit scoring or medical risk factors.
+- Rapide à entraîner.
+- Facile à interpréter.
+- Solide sur des problèmes simples ou principalement linéaires.
+- Utile lorsque l'explicabilité compte, par exemple en scoring de crédit ou en analyse de facteurs de risque médicaux.
 
-### Why We Need the Sigmoid Function
+### Pourquoi on utilise la fonction sigmoïde
 
-A linear model can output any value from `-infinity` to `+infinity`:
+Un modèle linéaire peut produire n'importe quelle valeur entre `-infinity` et `+infinity` :
 
 ```text
 z = beta_0 + beta_1 x_1 + ... + beta_p x_p
 ```
 
-But a probability must stay between `0` and `1`.
+Mais une probabilité doit rester entre `0` et `1`.
 
-So logistic regression transforms the linear score `z` using the sigmoid function:
+La régression logistique transforme donc le score linéaire `z` avec la fonction sigmoïde :
 
 ```text
 sigma(z) = 1 / (1 + exp(-z))
 ```
 
-This gives:
+Ce qui donne :
 
 ```text
 P(y = 1 | X) = sigma(beta_0 + beta_1 x_1 + ... + beta_p x_p)
 ```
 
-The sigmoid is appropriate because:
+La sigmoïde est appropriée parce que :
 
-- Its output is always between `0` and `1`.
-- It is smooth and differentiable, so gradient-based optimization works.
-- It is the inverse of the logit, which comes from the log-odds assumption.
+- Sa sortie est toujours comprise entre `0` et `1`.
+- Elle est lisse et dérivable, donc l'optimisation par gradient fonctionne.
+- Elle est l'inverse du logit, qui vient de l'hypothèse des log-odds.
 
-![Sigmoid curve showing how a linear score becomes a probability](figures/01_sigmoid_curve.svg)
+![Courbe sigmoïde montrant comment un score linéaire devient une probabilité](figures/01_sigmoid_curve.svg)
 
-### Odds and Log-Odds
+### Odds et log-odds
 
-Probability:
+Probabilité :
 
 ```text
 p = P(y = 1)
 ```
 
-Odds:
+Odds :
 
 ```text
 odds = p / (1 - p)
 ```
 
-Log-odds, also called the logit:
+Log-odds, aussi appelés logit :
 
 ```text
 log(odds) = log(p / (1 - p))
 ```
 
-Logistic regression assumes:
+La régression logistique suppose que :
 
 ```text
 log(p / (1 - p)) = beta_0 + beta_1 x_1 + ... + beta_p x_p
 ```
 
-So logistic regression is linear regression on the log-odds, not directly on the probability.
+La régression logistique est donc une régression linéaire sur les log-odds, pas directement sur la probabilité.
 
-### Decision Boundary
+### Frontière de décision
 
-By default, logistic regression predicts class `1` when:
+Par défaut, la régression logistique prédit la classe `1` lorsque :
 
 ```text
 P(y = 1 | X) > 0.5
 ```
 
-Since `sigmoid(0) = 0.5`, the decision boundary is where:
+Comme `sigmoid(0) = 0.5`, la frontière de décision est l'ensemble des points où :
 
 ```text
 beta_0 + beta_1 x_1 + ... + beta_p x_p = 0
 ```
 
-In 2D, this is a line. In higher dimensions, it is a hyperplane.
+En 2D, c'est une droite. En dimension plus élevée, c'est un hyperplan.
 
-This explains the main limitation of logistic regression: it draws a linear boundary. If the real pattern is circular, checkerboard-like, or strongly non-linear, logistic regression needs feature engineering or should be replaced by a non-linear model.
+Cela explique la principale limite de la régression logistique : elle trace une frontière linéaire. Si le vrai motif est circulaire, en damier, ou fortement non linéaire, la régression logistique a besoin de feature engineering ou doit être remplacée par un modèle non linéaire.
 
-![Logistic regression decision boundary separating two classes](figures/02_logistic_decision_boundary.svg)
+![Frontière de décision d'une régression logistique séparant deux classes](figures/02_logistic_decision_boundary.svg)
 
-### Interpreting Coefficients
+### Interpréter les coefficients
 
-Each coefficient changes the log-odds.
+Chaque coefficient modifie les log-odds.
 
-If `x_j` increases by 1 unit:
+Si `x_j` augmente d'une unité :
 
 ```text
-log-odds increase by beta_j
-odds are multiplied by exp(beta_j)
+les log-odds augmentent de beta_j
+les odds sont multipliées par exp(beta_j)
 ```
 
-Interpretation:
+Interprétation :
 
-- If `beta_j > 0`, the feature increases the odds of class `1`.
-- If `beta_j < 0`, the feature decreases the odds of class `1`.
-- If `exp(beta_j) = 2`, the odds are multiplied by 2.
-- If `exp(beta_j) = 0.5`, the odds are divided by 2.
+- Si `beta_j > 0`, la variable augmente les odds de la classe `1`.
+- Si `beta_j < 0`, la variable diminue les odds de la classe `1`.
+- Si `exp(beta_j) = 2`, les odds sont multipliées par 2.
+- Si `exp(beta_j) = 0.5`, les odds sont divisées par 2.
 
-Example:
+Exemple :
 
 ```text
 beta_age = -0.04
 exp(-0.04) = 0.96
 ```
 
-For each additional year of age, the odds are multiplied by `0.96`, meaning they decrease by about 4%, all else equal.
+Pour chaque année supplémentaire, les odds sont multipliées par `0.96`, ce qui signifie qu'elles diminuent d'environ 4 %, toutes choses égales par ailleurs.
 
-Important exam phrase: "all else equal" matters because the coefficient is interpreted while holding the other variables constant.
+Phrase importante pour l'examen : "toutes choses égales par ailleurs" compte, car le coefficient s'interprète en gardant les autres variables constantes.
 
-### Loss Function: Why Not MSE?
+### Fonction de perte : pourquoi pas la MSE ?
 
-For binary classification, the target follows a Bernoulli distribution:
+En classification binaire, la cible suit une distribution de Bernoulli :
 
 ```text
 y in {0, 1}
 ```
 
-The correct loss is binary cross-entropy, also called log-loss:
+La bonne fonction de perte est la binary cross-entropy, aussi appelée log-loss :
 
 ```text
 J(beta) = -(1/n) * sum[ y_i log(yhat_i) + (1 - y_i) log(1 - yhat_i) ]
 ```
 
-This comes from maximum likelihood estimation for a Bernoulli variable.
+Elle vient de l'estimation par maximum de vraisemblance pour une variable de Bernoulli.
 
-MSE is not the right loss for logistic regression because:
+La MSE n'est pas la bonne perte pour la régression logistique parce que :
 
-- MSE assumes Gaussian errors, not Bernoulli outcomes.
-- MSE combined with sigmoid can create non-convex optimization.
-- MSE can suffer from vanishing gradients when the model is confidently wrong.
+- La MSE suppose des erreurs gaussiennes, pas des résultats de Bernoulli.
+- MSE + sigmoïde peut créer une optimisation non convexe.
+- La MSE peut souffrir de gradients qui disparaissent lorsque le modèle est confiant mais faux.
 
-With cross-entropy, a confidently wrong prediction is strongly penalized, so the model receives a large corrective gradient.
+Avec la cross-entropy, une prédiction très confiante mais fausse est fortement pénalisée, donc le modèle reçoit un grand signal correctif.
 
-### Training
+### Entraînement
 
-There is no simple closed-form solution like ordinary linear regression. Logistic regression is trained through iterative optimization.
+Il n'existe pas de solution fermée simple comme en régression linéaire ordinaire. La régression logistique est entraînée par optimisation itérative.
 
-Generic update rule:
+Règle de mise à jour générale :
 
 ```text
 beta_new = beta_old - learning_rate * gradient
 ```
 
-The gradient has the intuitive form:
+Le gradient a la forme intuitive suivante :
 
 ```text
 sum( (yhat_i - y_i) * x_ij )
 ```
 
-That means the model adjusts each coefficient according to:
+Cela signifie que le modèle ajuste chaque coefficient selon :
 
-- The prediction error.
-- The value of the corresponding feature.
+- L'erreur de prédiction.
+- La valeur de la variable correspondante.
 
-### Feature Scaling
+### Mise à l'échelle des variables
 
-Logistic regression should usually use standardized features:
+La régression logistique doit généralement utiliser des variables standardisées :
 
 ```text
 x_scaled = (x - mean) / standard_deviation
 ```
 
-Why:
+Pourquoi :
 
-- Gradient-based optimization is sensitive to feature scale.
-- A feature like salary may range from 20,000 to 100,000, while age ranges from 18 to 80.
-- Without scaling, optimization can be slow or unstable.
+- L'optimisation par gradient est sensible à l'échelle des variables.
+- Une variable comme le salaire peut aller de 20 000 à 100 000, alors que l'âge va de 18 à 80.
+- Sans mise à l'échelle, l'optimisation peut être lente ou instable.
 
-Scaling also makes coefficients more comparable when features are measured in different units.
+La mise à l'échelle rend aussi les coefficients plus comparables lorsque les variables sont mesurées dans des unités différentes.
 
-### Multi-Class Logistic Regression
+### Régression logistique multi-classe
 
-For more than two classes, there are two main strategies.
+Lorsqu'il y a plus de deux classes, il existe deux stratégies principales.
 
 #### One-vs-Rest
 
-Train one binary classifier per class:
+On entraîne un classifieur binaire par classe :
 
 ```text
-Class A vs not A
-Class B vs not B
-Class C vs not C
+Classe A vs non A
+Classe B vs non B
+Classe C vs non C
 ```
 
-At prediction time, choose the class with the highest score.
+Au moment de prédire, on choisit la classe avec le score le plus élevé.
 
-Advantage: simple and works with any binary classifier.
+Avantage : simple et compatible avec n'importe quel classifieur binaire.
 
-#### Multinomial / Softmax
+#### Multinomiale / Softmax
 
-Softmax directly outputs a probability distribution over all classes:
+Softmax produit directement une distribution de probabilité sur toutes les classes :
 
 ```text
 P(y = k | X) = exp(z_k) / sum_j exp(z_j)
 ```
 
-Properties:
+Propriétés :
 
-- Every class probability is positive.
-- All probabilities sum to 1.
-- The loss is categorical cross-entropy.
+- Chaque probabilité de classe est positive.
+- Toutes les probabilités somment à 1.
+- La perte est la categorical cross-entropy.
 
-### When to Use Logistic Regression
+### Quand utiliser la régression logistique
 
-Use logistic regression when:
+Utiliser la régression logistique lorsque :
 
-- You need a strong, simple baseline.
-- Interpretability is important.
-- The relationship is approximately linear in the log-odds.
-- The dataset is small or medium-sized.
-- You need probabilities, not just class labels.
-- You are in a regulated context where decisions must be explainable.
+- On a besoin d'un modèle de référence simple et solide.
+- L'interprétabilité est importante.
+- La relation est approximativement linéaire dans les log-odds.
+- Le dataset est petit ou de taille moyenne.
+- On a besoin de probabilités, pas seulement de labels.
+- On est dans un contexte réglementé où les décisions doivent être expliquées.
 
-Avoid relying only on logistic regression when:
+Éviter de se reposer uniquement sur la régression logistique lorsque :
 
-- The decision boundary is strongly non-linear.
-- Feature interactions are complex and not manually engineered.
-- Predictive performance matters much more than interpretability.
+- La frontière de décision est fortement non linéaire.
+- Les interactions entre variables sont complexes et non construites manuellement.
+- La performance prédictive compte beaucoup plus que l'interprétabilité.
 
-### Logistic Regression Exam Traps
+### Pièges d'examen sur la régression logistique
 
-- It is a classification model, not a regression model.
-- It is linear in the log-odds, not linear in the probability.
-- The default threshold `0.5` is not sacred; it can be tuned.
-- Accuracy is not enough to evaluate it on imbalanced data.
-- Coefficients affect odds multiplicatively through `exp(beta_j)`.
-- Feature scaling is important for optimization.
+- C'est un modèle de classification, pas un modèle de régression.
+- Elle est linéaire dans les log-odds, pas dans la probabilité.
+- Le seuil par défaut `0.5` n'est pas sacré ; il peut être ajusté.
+- L'accuracy ne suffit pas pour l'évaluer sur des données déséquilibrées.
+- Les coefficients affectent les odds de façon multiplicative via `exp(beta_j)`.
+- La mise à l'échelle des variables est importante pour l'optimisation.
 
 ---
 
-## 3. Evaluation Metrics
+## 3. Métriques d'évaluation
 
-### The Confusion Matrix
+### La matrice de confusion
 
-For binary classification:
+Pour une classification binaire :
 
-| Reality / Prediction | Predicted Positive | Predicted Negative |
+| Réalité / Prédiction | Prédit positif | Prédit négatif |
 | --- | --- | --- |
-| Actual Positive | True Positive (TP) | False Negative (FN) |
-| Actual Negative | False Positive (FP) | True Negative (TN) |
+| Réel positif | True Positive (TP) | False Negative (FN) |
+| Réel négatif | False Positive (FP) | True Negative (TN) |
 
-Meaning:
+Signification :
 
-- TP: predicted positive and it was positive.
-- TN: predicted negative and it was negative.
-- FP: predicted positive but it was negative. This is a false alarm.
-- FN: predicted negative but it was positive. This is a missed detection.
+- TP : prédit positif et c'était réellement positif.
+- TN : prédit négatif et c'était réellement négatif.
+- FP : prédit positif mais c'était négatif. C'est une fausse alerte.
+- FN : prédit négatif mais c'était positif. C'est une détection manquée.
 
-Statistical terminology:
+Terminologie statistique :
 
-- Type I error = False Positive.
-- Type II error = False Negative.
+- Erreur de type I = False Positive.
+- Erreur de type II = False Negative.
 
-![Confusion matrix with TP, FN, FP, and TN](figures/03_confusion_matrix.svg)
+![Matrice de confusion avec TP, FN, FP et TN](figures/03_confusion_matrix.svg)
 
 ### Accuracy
 
@@ -318,15 +318,15 @@ Statistical terminology:
 Accuracy = (TP + TN) / (TP + TN + FP + FN)
 ```
 
-Accuracy answers:
+L'accuracy répond à la question :
 
 ```text
-What proportion of all predictions were correct?
+Quelle proportion de toutes les prédictions était correcte ?
 ```
 
-Accuracy is useful when classes are balanced and error costs are similar.
+L'accuracy est utile lorsque les classes sont équilibrées et que les coûts d'erreur sont similaires.
 
-It is dangerous on imbalanced data. Example: if fraud is 0.1% of the dataset, a model that always predicts "not fraud" gets 99.9% accuracy while detecting zero fraud.
+Elle est dangereuse sur des données déséquilibrées. Exemple : si la fraude représente 0,1 % du dataset, un modèle qui prédit toujours "non-fraude" obtient 99,9 % d'accuracy tout en détectant zéro fraude.
 
 ### Precision
 
@@ -334,21 +334,21 @@ It is dangerous on imbalanced data. Example: if fraud is 0.1% of the dataset, a 
 Precision = TP / (TP + FP)
 ```
 
-Precision answers:
+La precision répond à la question :
 
 ```text
-When the model predicts positive, how often is it correct?
+Lorsque le modèle prédit positif, à quelle fréquence a-t-il raison ?
 ```
 
-High precision means few false positives.
+Une precision élevée signifie peu de faux positifs.
 
-Use precision when false positives are expensive.
+Utiliser la precision lorsque les faux positifs coûtent cher.
 
-Examples:
+Exemples :
 
-- Spam filter: do not put important work emails in spam.
-- Recommender system: do not recommend irrelevant items.
-- Automatic ban system: avoid banning innocent users.
+- Filtre anti-spam : ne pas mettre des emails importants dans les spams.
+- Système de recommandation : ne pas recommander des éléments non pertinents.
+- Système de bannissement automatique : éviter de bannir des utilisateurs innocents.
 
 ### Recall
 
@@ -356,23 +356,23 @@ Examples:
 Recall = TP / (TP + FN)
 ```
 
-Recall is also called sensitivity or true positive rate.
+Le recall est aussi appelé sensibilité ou true positive rate.
 
-Recall answers:
+Le recall répond à la question :
 
 ```text
-Out of all real positives, how many did the model find?
+Parmi tous les vrais positifs, combien le modèle en a-t-il trouvés ?
 ```
 
-High recall means few false negatives.
+Un recall élevé signifie peu de faux négatifs.
 
-Use recall when missing a positive case is expensive.
+Utiliser le recall lorsque rater un cas positif coûte cher.
 
-Examples:
+Exemples :
 
-- Cancer screening.
-- Fraud detection.
-- Safety or security detection.
+- Dépistage du cancer.
+- Détection de fraude.
+- Détection de sécurité ou de sûreté.
 
 ### Specificity
 
@@ -380,236 +380,236 @@ Examples:
 Specificity = TN / (TN + FP)
 ```
 
-Specificity answers:
+La specificity répond à la question :
 
 ```text
-Out of all real negatives, how many did the model correctly reject?
+Parmi tous les vrais négatifs, combien le modèle a-t-il correctement rejetés ?
 ```
 
-High specificity means the model avoids false alarms among negatives.
+Une specificity élevée signifie que le modèle évite les fausses alertes parmi les négatifs.
 
-Relationship:
+Relation :
 
 ```text
 False Positive Rate = 1 - Specificity = FP / (FP + TN)
 ```
 
-### Precision vs Recall vs Specificity
+### Precision vs recall vs specificity
 
-These metrics have different denominators:
+Ces métriques ont des dénominateurs différents :
 
-| Metric | Formula | Denominator | Main question |
+| Métrique | Formule | Dénominateur | Question principale |
 | --- | --- | --- | --- |
-| Precision | `TP / (TP + FP)` | Predicted positives | Are positive predictions trustworthy? |
-| Recall | `TP / (TP + FN)` | Actual positives | Did we find the real positives? |
-| Specificity | `TN / (TN + FP)` | Actual negatives | Did we correctly reject negatives? |
+| Precision | `TP / (TP + FP)` | Positifs prédits | Les prédictions positives sont-elles fiables ? |
+| Recall | `TP / (TP + FN)` | Positifs réels | A-t-on trouvé les vrais positifs ? |
+| Specificity | `TN / (TN + FP)` | Négatifs réels | A-t-on correctement rejeté les négatifs ? |
 
-Golden rules:
+Règles d'or :
 
-- Recall measures performance on actual positives.
-- Specificity measures performance on actual negatives.
-- Precision measures the quality of positive predictions.
+- Le recall mesure la performance sur les positifs réels.
+- La specificity mesure la performance sur les négatifs réels.
+- La precision mesure la qualité des prédictions positives.
 
-![Precision, recall, and specificity denominators](figures/04_metric_denominators.svg)
+![Dénominateurs de la precision, du recall et de la specificity](figures/04_metric_denominators.svg)
 
-### Precision-Recall Trade-Off
+### Compromis precision-recall
 
-Most classifiers produce a score or probability first, then apply a threshold.
+La plupart des classifieurs produisent d'abord un score ou une probabilité, puis appliquent un seuil.
 
-For logistic regression:
+Pour la régression logistique :
 
 ```text
 predict positive if P(y = 1 | X) > threshold
 ```
 
-If threshold increases:
+Si le seuil augmente :
 
-- It becomes harder to predict positive.
-- Precision usually increases.
-- Recall usually decreases.
+- Il devient plus difficile de prédire positif.
+- La precision augmente généralement.
+- Le recall diminue généralement.
 
-If threshold decreases:
+Si le seuil diminue :
 
-- It becomes easier to predict positive.
-- Recall usually increases.
-- Precision usually decreases.
+- Il devient plus facile de prédire positif.
+- Le recall augmente généralement.
+- La precision diminue généralement.
 
-The threshold should be chosen according to the cost of mistakes, not automatically left at `0.5`.
+Le seuil doit être choisi selon le coût des erreurs, pas automatiquement laissé à `0.5`.
 
-![Threshold trade-off between precision and recall](figures/05_threshold_tradeoff.svg)
+![Compromis de seuil entre precision et recall](figures/05_threshold_tradeoff.svg)
 
-### F1-Score
+### F1-score
 
-F1 combines precision and recall:
+Le F1 combine precision et recall :
 
 ```text
 F1 = 2 * (Precision * Recall) / (Precision + Recall)
 ```
 
-It is the harmonic mean of precision and recall.
+C'est la moyenne harmonique de la precision et du recall.
 
-Why harmonic mean?
+Pourquoi la moyenne harmonique ?
 
-- It punishes imbalance.
-- If precision is high but recall is near zero, F1 is near zero.
-- If recall is high but precision is near zero, F1 is near zero.
+- Elle pénalise les déséquilibres.
+- Si la precision est élevée mais que le recall est proche de zéro, le F1 est proche de zéro.
+- Si le recall est élevé mais que la precision est proche de zéro, le F1 est proche de zéro.
 
-Use F1 when:
+Utiliser le F1 lorsque :
 
-- You need one metric.
-- Precision and recall are both important.
-- Classes are imbalanced.
+- On a besoin d'une seule métrique.
+- La precision et le recall sont tous les deux importants.
+- Les classes sont déséquilibrées.
 
-Do not use F1 blindly if the business cost of FP and FN is not balanced.
+Ne pas utiliser le F1 aveuglément si le coût métier des FP et des FN n'est pas équilibré.
 
-### F-Beta Score
+### F-beta score
 
-F-beta generalizes F1:
+Le F-beta généralise le F1 :
 
 ```text
 F_beta = (1 + beta^2) * (Precision * Recall) / ((beta^2 * Precision) + Recall)
 ```
 
-Interpretation:
+Interprétation :
 
-- `beta = 1`: balance precision and recall.
-- `beta < 1`: focus more on precision.
-- `beta > 1`: focus more on recall.
+- `beta = 1` : équilibre entre precision et recall.
+- `beta < 1` : plus d'importance à la precision.
+- `beta > 1` : plus d'importance au recall.
 
-Examples:
+Exemples :
 
-- `F_0.5`: useful when false positives are especially costly.
-- `F_2`: useful when false negatives are especially costly.
+- `F_0.5` : utile lorsque les faux positifs sont particulièrement coûteux.
+- `F_2` : utile lorsque les faux négatifs sont particulièrement coûteux.
 
-Exam trap:
+Piège d'examen :
 
-When `beta > 1`, F-beta emphasizes recall even though the denominator contains `beta^2 * Precision`. This happens because F-beta is a weighted harmonic mean. The weight is applied to the inverse of recall, and after algebraic rearrangement it appears next to precision.
+Quand `beta > 1`, F-beta met l'accent sur le recall même si le dénominateur contient `beta^2 * Precision`. Cela vient du fait que F-beta est une moyenne harmonique pondérée. Le poids est appliqué à l'inverse du recall, puis apparaît à côté de la precision après réarrangement algébrique.
 
-### Cost-Based Thresholding
+### Choix du seuil par coût métier
 
-The best threshold is often the one that minimizes expected business cost:
+Le meilleur seuil est souvent celui qui minimise le coût métier attendu :
 
 ```text
 Total Cost = FP * Cost(FP) + FN * Cost(FN)
 ```
 
-Example:
+Exemple :
 
-- Fraud missed: `Cost(FN) = 1000`
-- Legit transaction blocked: `Cost(FP) = 10`
+- Fraude manquée : `Cost(FN) = 1000`
+- Transaction légitime bloquée : `Cost(FP) = 10`
 
-In that case, you usually prefer higher recall because false negatives are far more expensive.
+Dans ce cas, on préfère généralement un recall plus élevé, car les faux négatifs sont beaucoup plus coûteux.
 
-### ROC Curve
+### Courbe ROC
 
-ROC stands for Receiver Operating Characteristic.
+ROC signifie Receiver Operating Characteristic.
 
-It plots model performance across all thresholds:
+Elle trace les performances du modèle pour tous les seuils possibles :
 
-- X-axis: False Positive Rate = `FP / (FP + TN)` = `1 - specificity`.
-- Y-axis: True Positive Rate = recall = `TP / (TP + FN)`.
+- Axe X : False Positive Rate = `FP / (FP + TN)` = `1 - specificity`.
+- Axe Y : True Positive Rate = recall = `TP / (TP + FN)`.
 
-How to read it:
+Comment la lire :
 
-- Top-left is ideal: high recall, low false positive rate.
-- Diagonal line is random guessing.
-- The curve should rise quickly upward before moving right.
+- Le coin en haut à gauche est idéal : recall élevé, false positive rate faible.
+- La diagonale représente une prédiction aléatoire.
+- La courbe doit monter rapidement avant d'aller vers la droite.
 
-![ROC curve with random baseline and top-left target](figures/06_roc_curve.svg)
+![Courbe ROC avec baseline aléatoire et objectif en haut à gauche](figures/06_roc_curve.svg)
 
 ### AUC
 
-AUC is the area under the ROC curve.
+L'AUC est l'aire sous la courbe ROC.
 
-Interpretation:
+Interprétation :
 
-- `AUC = 0.5`: random ranking.
-- `AUC = 1.0`: perfect ranking.
-- `AUC = 0.8` to `0.9`: often considered good.
+- `AUC = 0.5` : classement aléatoire.
+- `AUC = 1.0` : classement parfait.
+- `AUC = 0.8` à `0.9` : souvent considéré comme bon.
 
-Important interpretation:
-
-```text
-AUC = probability that a randomly chosen positive receives a higher score than a randomly chosen negative.
-```
-
-AUC measures ranking quality, not calibration.
-
-Calibration asks:
+Interprétation importante :
 
 ```text
-If the model says 0.80 probability, does the event happen about 80% of the time?
+AUC = probabilité qu'un positif choisi au hasard reçoive un score plus élevé qu'un négatif choisi au hasard.
 ```
 
-Two models can have the same AUC even if one outputs useful probabilities and the other outputs compressed scores like `0.51` and `0.49`.
+L'AUC mesure la qualité du ranking, pas la calibration.
 
-### Precision-Recall Curve
+La calibration demande :
 
-A precision-recall curve plots:
+```text
+Si le modèle annonce une probabilité de 0.80, l'événement arrive-t-il environ 80 % du temps ?
+```
 
-- X-axis: recall.
-- Y-axis: precision.
+Deux modèles peuvent avoir la même AUC même si l'un produit des probabilités utiles et l'autre des scores compressés comme `0.51` et `0.49`.
 
-The ideal point is top-right:
+### Courbe precision-recall
+
+Une courbe precision-recall trace :
+
+- Axe X : recall.
+- Axe Y : precision.
+
+Le point idéal est en haut à droite :
 
 ```text
 Recall = 1 and Precision = 1
 ```
 
-The random baseline is:
+La baseline aléatoire est :
 
 ```text
-positive class rate = number of positives / total examples
+taux de classe positive = nombre de positifs / nombre total d'exemples
 ```
 
-Use PR curves when:
+Utiliser les courbes PR lorsque :
 
-- The positive class is rare.
-- You care strongly about finding positives.
-- Precision collapses quickly when you increase recall.
+- La classe positive est rare.
+- On veut fortement trouver les positifs.
+- La precision chute rapidement lorsque l'on augmente le recall.
 
-For fraud, cancer, anomaly detection, or rare-event detection, PR curves are often more informative than ROC curves.
+Pour la fraude, le cancer, la détection d'anomalies ou les événements rares, les courbes PR sont souvent plus informatives que les courbes ROC.
 
-![Precision-recall curve with rare-class baseline](figures/07_pr_curve.svg)
+![Courbe precision-recall avec baseline de classe rare](figures/07_pr_curve.svg)
 
-### ROC vs PR Curve
+### ROC vs courbe PR
 
-| Situation | Prefer |
+| Situation | Préférer |
 | --- | --- |
-| Balanced classes | ROC can be useful |
-| True negatives matter a lot | ROC can be useful |
-| Positive class is rare | PR curve is usually better |
-| You care about precision and recall | PR curve |
-| You care about ranking positives above negatives | AUC-ROC |
+| Classes équilibrées | ROC peut être utile |
+| Les vrais négatifs comptent beaucoup | ROC peut être utile |
+| La classe positive est rare | Courbe PR généralement meilleure |
+| On s'intéresse à precision et recall | Courbe PR |
+| On s'intéresse au ranking des positifs au-dessus des négatifs | AUC-ROC |
 
-### Multi-Class Metrics
+### Métriques multi-classes
 
-For multi-class classification, compute metrics one class at a time using One-vs-Rest, then average.
+Pour une classification multi-classe, on calcule les métriques classe par classe en One-vs-Rest, puis on les moyenne.
 
-Macro average:
+Macro average :
 
-- Compute metric for each class.
-- Take the simple average.
-- Treats all classes equally.
-- Useful when minority classes matter.
+- Calculer la métrique pour chaque classe.
+- Prendre la moyenne simple.
+- Traite toutes les classes de la même façon.
+- Utile lorsque les classes minoritaires comptent.
 
-Weighted average:
+Weighted average :
 
-- Compute metric for each class.
-- Weight each class by its number of true examples.
-- Can hide bad performance on rare classes.
+- Calculer la métrique pour chaque classe.
+- Pondérer chaque classe par son nombre d'exemples réels.
+- Peut cacher une mauvaise performance sur les classes rares.
 
-Exam trap: on imbalanced multi-class data, weighted F1 can look good even if the model fails on the minority class. Macro F1 is stricter.
+Piège d'examen : sur des données multi-classes déséquilibrées, le F1 pondéré peut sembler bon même si le modèle échoue sur la classe minoritaire. Le macro F1 est plus strict.
 
 ---
 
-## 4. Decision Trees
+## 4. Arbres de décision
 
-### What They Are
+### Ce que c'est
 
-A decision tree is a supervised learning algorithm for classification or regression.
+Un arbre de décision est un algorithme d'apprentissage supervisé pour la classification ou la régression.
 
-It predicts by asking a sequence of questions:
+Il prédit en posant une suite de questions :
 
 ```text
 Is age <= 30?
@@ -617,619 +617,620 @@ Is income > 50000?
 Is tumor size <= 2.5?
 ```
 
-The structure:
+Structure :
 
-- Root node: the first split, representing the full dataset.
-- Internal node: a decision rule.
-- Branch: the path from one node to another.
-- Leaf node: the final prediction.
+- Noeud racine : le premier split, représentant tout le dataset.
+- Noeud interne : une règle de décision.
+- Branche : le chemin d'un noeud vers un autre.
+- Feuille : la prédiction finale.
 
-For classification, the leaf predicts a class.
+En classification, la feuille prédit une classe.
 
-For regression, the leaf predicts a numerical value, usually the mean target value of training observations in that leaf.
+En régression, la feuille prédit une valeur numérique, généralement la moyenne de la cible des observations d'entraînement présentes dans cette feuille.
 
-![Decision tree structure with root, internal node, branches, and leaves](figures/08_decision_tree_structure.svg)
+![Structure d'un arbre de décision avec racine, noeud interne, branches et feuilles](figures/08_decision_tree_structure.svg)
 
-### How CART Builds a Classification Tree
+### Comment CART construit un arbre de classification
 
-CART stands for Classification and Regression Trees.
+CART signifie Classification and Regression Trees.
 
-At each node, CART tries to find the best split.
+À chaque noeud, CART cherche le meilleur split.
 
-For numerical features:
+Pour les variables numériques :
 
-1. Sort the unique values.
-2. Compute midpoints between consecutive values.
-3. Try each midpoint as a threshold.
-4. Split the data into left and right groups.
-5. Compute the impurity of the split.
-6. Choose the split with the lowest weighted impurity.
+1. Trier les valeurs uniques.
+2. Calculer les points milieux entre valeurs consécutives.
+3. Tester chaque point milieu comme seuil.
+4. Séparer les données en groupe gauche et groupe droit.
+5. Calculer l'impureté du split.
+6. Choisir le split avec l'impureté pondérée la plus faible.
 
-The process repeats recursively until a stopping condition is reached.
+Le processus se répète récursivement jusqu'à atteindre une condition d'arrêt.
 
-Important: CART is greedy.
+Important : CART est glouton.
 
-That means it chooses the best split now, not necessarily the split that leads to the globally best tree later. This makes decision trees fast, but not globally optimal.
+Cela signifie qu'il choisit le meilleur split maintenant, pas nécessairement le split qui mènerait au meilleur arbre global plus tard. Cela rend les arbres rapides, mais pas globalement optimaux.
 
-### Gini Impurity
+### Impureté de Gini
 
-Gini impurity measures how mixed a node is.
+L'impureté de Gini mesure à quel point un noeud est mélangé.
 
-For a node `D` with `c` classes:
+Pour un noeud `D` avec `c` classes :
 
 ```text
 Gini(D) = 1 - sum_i p_i^2
 ```
 
-where `p_i` is the proportion of class `i` in the node.
+où `p_i` est la proportion de la classe `i` dans le noeud.
 
-Interpretation:
+Interprétation :
 
-- `Gini = 0`: pure node, all observations have the same class.
-- Higher Gini: more mixed node.
-- In binary classification, maximum Gini is `0.5`, when classes are split 50/50.
+- `Gini = 0` : noeud pur, toutes les observations ont la même classe.
+- Gini plus élevé : noeud plus mélangé.
+- En classification binaire, le Gini maximal est `0.5`, lorsque les classes sont réparties 50/50.
 
-Weighted Gini after a split:
+Gini pondéré après un split :
 
 ```text
 Gini_split = (|D_left| / |D|) * Gini(D_left)
            + (|D_right| / |D|) * Gini(D_right)
 ```
 
-The best split is the one with the lowest `Gini_split`.
+Le meilleur split est celui avec le `Gini_split` le plus faible.
 
-![Bad and good Gini split comparison](figures/09_gini_split_good_bad.svg)
+![Comparaison entre un mauvais et un bon split de Gini](figures/09_gini_split_good_bad.svg)
 
-### Entropy and Information Gain
+### Entropie et information gain
 
-Entropy is another impurity measure:
+L'entropie est une autre mesure d'impureté :
 
 ```text
 H(D) = - sum_i p_i log2(p_i)
 ```
 
-Information gain measures how much entropy decreases after a split:
+L'information gain mesure la baisse d'entropie après un split :
 
 ```text
 IG(D, split) = H(D) - weighted_child_entropy
 ```
 
-Comparison:
+Comparaison :
 
-- Gini is faster because it does not use logarithms.
-- Entropy can produce slightly more balanced trees.
-- In practice, results are often similar.
+- Gini est plus rapide car il n'utilise pas de logarithmes.
+- L'entropie peut produire des arbres légèrement plus équilibrés.
+- En pratique, les résultats sont souvent similaires.
 
-### Regression Trees
+### Arbres de régression
 
-Regression trees predict continuous values.
+Les arbres de régression prédisent des valeurs continues.
 
-Instead of minimizing Gini impurity, they minimize mean squared error.
+Au lieu de minimiser l'impureté de Gini, ils minimisent la mean squared error.
 
-For a node `t`:
+Pour un noeud `t` :
 
 ```text
 MSE(t) = (1 / |D_t|) * sum_{i in D_t} (y_i - mean_y_t)^2
 ```
 
-A split is good if it reduces the weighted MSE of the child nodes.
+Un split est bon s'il réduit la MSE pondérée des noeuds enfants.
 
-Prediction in a leaf:
+Prédiction dans une feuille :
 
 ```text
-predicted value = mean target value of training observations in that leaf
+valeur prédite = moyenne de la cible des observations d'entraînement dans cette feuille
 ```
 
-Important limitation: regression trees do not extrapolate well. If trained only on houses from 30m2 to 110m2, they cannot reliably predict prices for 150m2 because they only average values seen in leaves.
+Limite importante : les arbres de régression extrapolent mal. S'ils sont entraînés uniquement sur des logements de 30m2 à 110m2, ils ne peuvent pas prédire de façon fiable les prix pour 150m2, car ils ne font que moyenner des valeurs vues dans les feuilles.
 
-### Decision Boundaries
+### Frontières de décision
 
-Decision trees create axis-aligned boundaries.
+Les arbres de décision créent des frontières alignées avec les axes.
 
-In 2D, they split like:
+En 2D, ils splitent sous la forme :
 
 ```text
 x_1 <= threshold
 x_2 <= threshold
 ```
 
-So their decision regions look rectangular or step-like.
+Leurs régions de décision ressemblent donc à des rectangles ou à des marches.
 
-Comparison:
+Comparaison :
 
-- Logistic regression draws one straight diagonal line or hyperplane.
-- Decision trees draw box-like regions.
+- La régression logistique trace une droite diagonale ou un hyperplan.
+- Les arbres de décision tracent des régions en boîtes.
 
-To approximate a diagonal boundary, a tree may need many small splits, which can lead to overfitting.
+Pour approximer une frontière diagonale, un arbre peut avoir besoin de nombreux petits splits, ce qui peut mener à l'overfitting.
 
-![Decision tree axis-aligned decision surface](figures/10_tree_axis_aligned_boundary.svg)
+![Surface de décision alignée avec les axes pour un arbre de décision](figures/10_tree_axis_aligned_boundary.svg)
 
-### Pruning and Regularization
+### Élagage et régularisation
 
-Decision trees can easily overfit if allowed to grow too deep.
+Les arbres de décision peuvent facilement overfitter s'ils deviennent trop profonds.
 
-#### Pre-Pruning
+#### Pré-élagage
 
-Pre-pruning stops the tree early.
+Le pré-élagage arrête l'arbre tôt.
 
-Common hyperparameters:
+Hyperparamètres courants :
 
-- `max_depth`: maximum depth of the tree.
-- `min_samples_split`: minimum samples needed to split a node.
-- `min_samples_leaf`: minimum samples required in a leaf.
-- `max_leaf_nodes`: maximum number of leaves.
+- `max_depth` : profondeur maximale de l'arbre.
+- `min_samples_split` : nombre minimum d'échantillons nécessaires pour splitter un noeud.
+- `min_samples_leaf` : nombre minimum d'échantillons requis dans une feuille.
+- `max_leaf_nodes` : nombre maximum de feuilles.
 
-If the tree is stopped too early, it underfits. If it grows too much, it overfits.
+Si l'arbre est arrêté trop tôt, il underfit. S'il grandit trop, il overfit.
 
-#### Post-Pruning: Cost Complexity Pruning
+#### Post-élagage : cost complexity pruning
 
-Post-pruning grows a tree first, then removes branches that are not useful.
+Le post-élagage construit d'abord l'arbre, puis retire les branches inutiles.
 
-Cost complexity pruning uses:
+Le cost complexity pruning utilise :
 
 ```text
 R_alpha(T) = R(T) + alpha * |T|
 ```
 
-where:
+où :
 
-- `R(T)` is the impurity or error of the tree.
-- `|T|` is the number of leaf nodes.
-- `alpha` controls how much we penalize complexity.
+- `R(T)` est l'impureté ou l'erreur de l'arbre.
+- `|T|` est le nombre de feuilles.
+- `alpha` contrôle la pénalité de complexité.
 
-Higher `alpha` means stronger pruning and a smaller tree.
+Plus `alpha` est élevé, plus l'élagage est fort et plus l'arbre est petit.
 
-In scikit-learn:
+En scikit-learn :
 
 ```python
 DecisionTreeClassifier(ccp_alpha=0.01)
 ```
 
-### Feature Importance in Decision Trees
+### Importance des variables dans les arbres de décision
 
-Decision trees can compute feature importance using impurity reduction.
+Les arbres de décision peuvent calculer l'importance des variables via la réduction d'impureté.
 
-A feature is important if:
+Une variable est importante si :
 
-- It is used often in splits.
-- The splits where it is used strongly reduce impurity.
-- The splits affect many observations.
+- Elle est souvent utilisée dans les splits.
+- Les splits où elle est utilisée réduisent fortement l'impureté.
+- Ces splits concernent beaucoup d'observations.
 
-General idea:
+Idée générale :
 
 ```text
-Importance(feature) = sum of weighted impurity decreases caused by that feature
+Importance(feature) = somme des diminutions d'impureté pondérées causées par cette variable
 ```
 
-This is called Mean Decrease in Impurity, or MDI.
+Cela s'appelle Mean Decrease in Impurity, ou MDI.
 
-### When to Use Decision Trees
+### Quand utiliser les arbres de décision
 
-Use decision trees when:
+Utiliser les arbres de décision lorsque :
 
-- You want interpretable if/then rules.
-- The relationship is non-linear.
-- There are feature interactions.
-- You want little preprocessing compared with linear models.
-- You need a model that works for classification or regression.
+- On veut des règles interprétables de type if/then.
+- La relation est non linéaire.
+- Il existe des interactions entre variables.
+- On veut peu de preprocessing comparé aux modèles linéaires.
+- On a besoin d'un modèle qui fonctionne en classification ou en régression.
 
-Be careful when:
+Être prudent lorsque :
 
-- The tree is very deep.
-- The dataset is noisy.
-- Small data changes produce a very different tree.
-- You need smooth probability estimates.
-- You need extrapolation in regression.
+- L'arbre est très profond.
+- Le dataset est bruité.
+- De petits changements dans les données produisent un arbre très différent.
+- On a besoin d'estimations de probabilité lisses.
+- On a besoin d'extrapolation en régression.
 
-### Decision Tree Exam Traps
+### Pièges d'examen sur les arbres de décision
 
-- A decision tree is greedy, not globally optimal.
-- Gini impurity measures node impurity, not model accuracy.
-- The best split is the one with lowest weighted child impurity.
-- Trees can overfit badly without pruning or depth constraints.
-- Tree boundaries are axis-aligned, not diagonal.
-- Regression trees predict averages in leaves; they do not extrapolate naturally.
+- Un arbre de décision est glouton, pas globalement optimal.
+- L'impureté de Gini mesure l'impureté d'un noeud, pas l'accuracy du modèle.
+- Le meilleur split est celui avec l'impureté pondérée des enfants la plus faible.
+- Les arbres peuvent fortement overfitter sans élagage ou contrainte de profondeur.
+- Les frontières des arbres sont alignées avec les axes, pas diagonales.
+- Les arbres de régression prédisent des moyennes dans les feuilles ; ils n'extrapolent pas naturellement.
 
 ---
 
-## 5. Random Forests
+## 5. Forêts aléatoires
 
-### What They Are
+### Ce que c'est
 
-A random forest is an ensemble of decision trees.
+Une forêt aléatoire est un ensemble d'arbres de décision.
 
-Instead of relying on one tree, it trains many trees and combines their predictions.
+Au lieu de dépendre d'un seul arbre, elle entraîne beaucoup d'arbres et combine leurs prédictions.
 
-For classification:
-
-```text
-final prediction = majority vote of the trees
-```
-
-For regression:
+Pour la classification :
 
 ```text
-final prediction = average prediction of the trees
+prédiction finale = vote majoritaire des arbres
 ```
 
-The purpose is to reduce the high variance of individual decision trees.
+Pour la régression :
 
-### Ensemble Intuition
+```text
+prédiction finale = moyenne des prédictions des arbres
+```
 
-A single decision tree can be unstable. Small changes in the training data can produce a very different tree.
+Le but est de réduire la forte variance des arbres de décision individuels.
 
-A random forest reduces this instability by combining many trees.
+### Intuition des ensembles
 
-The "wisdom of crowds" works when:
+Un seul arbre de décision peut être instable. De petits changements dans les données d'entraînement peuvent produire un arbre très différent.
 
-- Each tree is better than random guessing.
-- The trees make different errors.
-- The trees are not too correlated with each other.
+Une forêt aléatoire réduit cette instabilité en combinant beaucoup d'arbres.
 
-If all trees are identical, voting does not help. Diversity is essential.
+La "sagesse des foules" fonctionne lorsque :
 
-### Weak and Strong Learners
+- Chaque arbre est meilleur qu'une prédiction aléatoire.
+- Les arbres font des erreurs différentes.
+- Les arbres ne sont pas trop corrélés entre eux.
 
-A weak learner is a model that performs only slightly better than random guessing.
+Si tous les arbres sont identiques, le vote n'aide pas. La diversité est essentielle.
 
-A strong learner is a model that achieves high predictive performance.
+### Weak learners et strong learners
 
-The idea of ensemble methods is to combine many weak or unstable learners into a stronger learner. A random forest does this by combining many decision trees.
+Un weak learner est un modèle qui fait seulement un peu mieux qu'une prédiction aléatoire.
 
-### Main Ensemble Families
+Un strong learner est un modèle qui atteint une forte performance prédictive.
 
-Bagging:
+L'idée des méthodes d'ensemble est de combiner plusieurs modèles faibles ou instables pour construire un modèle plus fort. Une forêt aléatoire le fait en combinant beaucoup d'arbres de décision.
 
-- Trains models in parallel on different bootstrap samples.
-- Reduces variance.
-- Example: random forest.
+### Grandes familles d'ensembles
 
-Boosting:
+Bagging :
 
-- Trains models sequentially.
-- Each new model focuses more on previous mistakes.
-- Mainly reduces bias.
-- Examples: AdaBoost, XGBoost, LightGBM.
+- Entraîne les modèles en parallèle sur différents échantillons bootstrap.
+- Réduit la variance.
+- Exemple : random forest.
 
-Stacking:
+Boosting :
 
-- Trains several different base models.
-- Then trains a final meta-model to combine their predictions.
+- Entraîne les modèles séquentiellement.
+- Chaque nouveau modèle se concentre davantage sur les erreurs précédentes.
+- Réduit principalement le biais.
+- Exemples : AdaBoost, XGBoost, LightGBM.
 
-Random forest belongs to the bagging family.
+Stacking :
 
-### Bagging: Bootstrap Aggregating
+- Entraîne plusieurs modèles de base différents.
+- Entraîne ensuite un méta-modèle final pour combiner leurs prédictions.
 
-Bagging creates many different training sets from the original data.
+La forêt aléatoire appartient à la famille du bagging.
 
-For each tree:
+### Bagging : bootstrap aggregating
 
-1. Sample `n` rows from the training set of size `n`.
-2. Sample with replacement, so the same row can appear multiple times.
-3. Train one tree on that bootstrap sample.
+Le bagging crée beaucoup de jeux d'entraînement différents à partir des données originales.
 
-Because sampling is done with replacement:
+Pour chaque arbre :
 
-- About 63.2% of unique observations appear in a given bootstrap sample.
-- About 36.8% are left out for that tree.
+1. Échantillonner `n` lignes depuis le train set de taille `n`.
+2. Échantillonner avec replacement, donc la même ligne peut apparaître plusieurs fois.
+3. Entraîner un arbre sur cet échantillon bootstrap.
 
-The left-out observations are called out-of-bag samples.
+Comme l'échantillonnage se fait avec replacement :
 
-![Bagging process for random forests](figures/11_bagging_random_forest.svg)
+- Environ 63,2 % des observations uniques apparaissent dans un échantillon bootstrap donné.
+- Environ 36,8 % sont laissées de côté pour cet arbre.
 
-### Out-of-Bag Validation
+Les observations laissées de côté sont appelées out-of-bag samples.
 
-For each observation, some trees did not see it during training.
+![Processus de bagging pour les forêts aléatoires](figures/11_bagging_random_forest.svg)
 
-OOB validation predicts that observation using only trees where it was out-of-bag.
+### Validation out-of-bag
 
-This gives a natural validation estimate without needing a separate validation split.
+Pour chaque observation, certains arbres ne l'ont pas vue pendant l'entraînement.
 
-In scikit-learn:
+La validation OOB prédit cette observation uniquement avec les arbres pour lesquels elle était out-of-bag.
+
+Cela donne une estimation de validation naturelle sans avoir besoin d'un split de validation séparé.
+
+En scikit-learn :
 
 ```python
 RandomForestClassifier(oob_score=True)
 ```
 
-OOB is useful, but it does not mean test sets are useless. A final test set is still important for unbiased final evaluation.
+L'OOB est utile, mais cela ne signifie pas qu'un test set est inutile. Un test set final reste important pour une évaluation finale non biaisée.
 
-### Random Feature Selection
+### Sélection aléatoire des variables
 
-A random forest adds a second source of randomness: at each split, each tree only considers a random subset of features.
+Une forêt aléatoire ajoute une deuxième source d'aléatoire : à chaque split, chaque arbre ne considère qu'un sous-ensemble aléatoire de variables.
 
-This is crucial.
+C'est crucial.
 
-Without random feature selection, if one feature is very strong, most trees will use it near the top. The trees become similar and their errors become correlated.
+Sans sélection aléatoire des variables, si une variable est très forte, la plupart des arbres l'utiliseront près du sommet. Les arbres deviennent similaires et leurs erreurs deviennent corrélées.
 
-Random feature selection forces trees to explore different predictors. This decorrelates the trees and improves the forest.
+La sélection aléatoire des variables force les arbres à explorer différents prédicteurs. Cela décorrèle les arbres et améliore la forêt.
 
-Course rules of thumb:
+Règles pratiques du cours :
 
-- Classification: use about `sqrt(d)` features at each split.
-- Regression: use about `d / 3` features at each split.
+- Classification : utiliser environ `sqrt(d)` variables à chaque split.
+- Régression : utiliser environ `d / 3` variables à chaque split.
 
-where `d` is the total number of features.
+où `d` est le nombre total de variables.
 
-![Random feature selection at each split](figures/12_random_feature_selection.svg)
+![Sélection aléatoire des variables à chaque split](figures/12_random_feature_selection.svg)
 
-### Why Averaging Reduces Variance
+### Pourquoi la moyenne réduit la variance
 
-If we average `B` independent models, each with variance `sigma^2`:
+Si l'on moyenne `B` modèles indépendants, chacun avec une variance `sigma^2` :
 
 ```text
 Variance(mean) = sigma^2 / B
 ```
 
-So more independent trees means lower variance.
+Donc plus il y a d'arbres indépendants, plus la variance diminue.
 
-But trees are not perfectly independent. If their correlation is `rho`, the forest variance is:
+Mais les arbres ne sont pas parfaitement indépendants. Si leur corrélation est `rho`, la variance de la forêt est :
 
 ```text
 Variance(forest) = rho * sigma^2 + ((1 - rho) / B) * sigma^2
 ```
 
-This formula explains random forests:
+Cette formule explique les forêts aléatoires :
 
-- Increasing `B` helps.
-- But if `rho` is high, there is a limit to the improvement.
-- Random feature selection lowers `rho`.
+- Augmenter `B` aide.
+- Mais si `rho` est élevé, l'amélioration est limitée.
+- La sélection aléatoire des variables diminue `rho`.
 
-![Variance reduction by averaging many noisy tree predictions](figures/13_variance_reduction.svg)
+![Réduction de variance en moyennant plusieurs prédictions bruitées d'arbres](figures/13_variance_reduction.svg)
 
-### Random Forest Algorithm
+### Algorithme de la forêt aléatoire
 
-Training:
+Entraînement :
 
-1. Choose number of trees `B`.
-2. For each tree:
-   - Draw a bootstrap sample from the training data.
-   - Grow a decision tree.
-   - At each node, randomly select `m` candidate features.
-   - Choose the best split among those `m` features using Gini or MSE.
-   - Continue until a stopping rule is reached.
+1. Choisir le nombre d'arbres `B`.
+2. Pour chaque arbre :
+   - Tirer un échantillon bootstrap depuis les données d'entraînement.
+   - Faire pousser un arbre de décision.
+   - À chaque noeud, sélectionner aléatoirement `m` variables candidates.
+   - Choisir le meilleur split parmi ces `m` variables avec Gini ou MSE.
+   - Continuer jusqu'à atteindre une règle d'arrêt.
 
-Prediction:
+Prédiction :
 
-- Classification: each tree votes, and the majority class wins.
-- Regression: average the tree predictions.
+- Classification : chaque arbre vote, et la classe majoritaire gagne.
+- Régression : on moyenne les prédictions des arbres.
 
-### Important Hyperparameters
+### Hyperparamètres importants
 
-`n_estimators`:
+`n_estimators` :
 
-- Number of trees.
-- More trees usually reduce variance.
-- More trees also increase training time and memory.
-- Performance eventually stabilizes.
+- Nombre d'arbres.
+- Plus d'arbres réduit généralement la variance.
+- Plus d'arbres augmente aussi le temps d'entraînement et la mémoire.
+- La performance finit par se stabiliser.
 
-`max_features`:
+`max_features` :
 
-- Number of features considered at each split.
-- Smaller values increase tree diversity but can increase bias.
-- Larger values make trees stronger individually but more correlated.
+- Nombre de variables considérées à chaque split.
+- Des valeurs plus petites augmentent la diversité des arbres mais peuvent augmenter le biais.
+- Des valeurs plus grandes rendent les arbres individuellement plus forts mais plus corrélés.
 
-`max_depth`:
+`max_depth` :
 
-- Maximum tree depth.
-- Controls complexity of individual trees.
+- Profondeur maximale de l'arbre.
+- Contrôle la complexité des arbres individuels.
 
-`min_samples_leaf`:
+`min_samples_leaf` :
 
-- Minimum samples per leaf.
-- Larger values smooth the model and reduce overfitting.
+- Nombre minimum d'échantillons par feuille.
+- Des valeurs plus grandes lissent le modèle et réduisent l'overfitting.
 
-`oob_score`:
+`oob_score` :
 
-- Enables out-of-bag validation.
+- Active la validation out-of-bag.
 
-`n_jobs`:
+`n_jobs` :
 
-- Allows parallel training.
-- `n_jobs=-1` uses all available CPU cores.
+- Permet l'entraînement parallèle.
+- `n_jobs=-1` utilise tous les coeurs CPU disponibles.
 
-### Feature Importance in Random Forests
+### Importance des variables dans les forêts aléatoires
 
-Random forests often report MDI feature importance.
+Les forêts aléatoires rapportent souvent l'importance MDI des variables.
 
-For each tree, importance is the weighted impurity decrease caused by each feature. The forest averages that importance across all trees.
+Pour chaque arbre, l'importance est la diminution d'impureté pondérée causée par chaque variable. La forêt moyenne cette importance sur tous les arbres.
 
-Interpretation:
+Interprétation :
 
-- High importance means the feature often creates useful splits.
-- Low importance means the feature contributes little to impurity reduction.
+- Une importance élevée signifie que la variable crée souvent des splits utiles.
+- Une importance faible signifie que la variable contribue peu à la réduction d'impureté.
 
-Pitfall:
+Piège :
 
-MDI is biased toward features with many possible split points, such as continuous variables or high-cardinality categorical variables.
+La MDI est biaisée en faveur des variables avec beaucoup de points de split possibles, comme les variables continues ou les variables catégorielles à forte cardinalité.
 
-Alternative:
+Alternative :
 
-Use permutation importance to check whether a feature really matters. Permutation importance randomly shuffles a feature and measures how much model performance drops.
+Utiliser la permutation importance pour vérifier si une variable compte vraiment. La permutation importance mélange aléatoirement une variable et mesure à quel point la performance du modèle diminue.
 
-### When to Use Random Forests
+### Quand utiliser les forêts aléatoires
 
-Use random forests when:
+Utiliser les forêts aléatoires lorsque :
 
-- You have structured/tabular data.
-- You expect non-linear relationships.
-- You expect feature interactions.
-- You have many weak predictors.
-- The data is noisy.
-- You want a strong model with limited tuning.
-- You are prototyping and want feature importance.
+- Les données sont structurées/tabulaires.
+- On s'attend à des relations non linéaires.
+- On s'attend à des interactions entre variables.
+- On a beaucoup de prédicteurs faibles.
+- Les données sont bruitées.
+- On veut un modèle fort avec peu de tuning.
+- On prototype et on veut une importance des variables.
 
-Be careful when:
+Être prudent lorsque :
 
-- You need full interpretability.
-- The dataset is very large.
-- Prediction latency or memory matters.
-- A simple model is already good enough.
-- You need a transparent model for regulation.
+- On a besoin d'une interprétabilité complète.
+- Le dataset est très grand.
+- La latence de prédiction ou la mémoire compte.
+- Un modèle simple est déjà suffisamment bon.
+- On a besoin d'un modèle transparent pour des raisons réglementaires.
 
-In production, businesses may prefer logistic regression for interpretability, or gradient boosted trees such as XGBoost/LightGBM for efficiency and performance on large datasets.
+En production, les entreprises peuvent préférer la régression logistique pour l'interprétabilité, ou des arbres boostés comme XGBoost/LightGBM pour l'efficacité et la performance sur de grands datasets.
 
-### Random Forest Exam Traps
+### Pièges d'examen sur les forêts aléatoires
 
-- Random forest reduces variance, not mainly bias.
-- Bagging uses bootstrap samples.
-- Each tree sees about 63.2% unique samples and leaves about 36.8% out-of-bag.
-- Random feature selection reduces correlation between trees.
-- More trees help until performance stabilizes, but they do not fix high tree correlation.
-- Feature importance from MDI can be biased toward high-cardinality features.
+- La forêt aléatoire réduit surtout la variance, pas le biais.
+- Le bagging utilise des échantillons bootstrap.
+- Chaque arbre voit environ 63,2 % d'observations uniques et laisse environ 36,8 % en out-of-bag.
+- La sélection aléatoire des variables réduit la corrélation entre les arbres.
+- Ajouter des arbres aide jusqu'à stabilisation de la performance, mais ne corrige pas une forte corrélation entre arbres.
+- L'importance MDI peut être biaisée en faveur des variables à forte cardinalité.
 
 ---
 
-## 6. Model Selection Cheat Sheet
+## 6. Aide-mémoire de sélection de modèle
 
-| Situation | Good choice | Why |
+| Situation | Bon choix | Pourquoi |
 | --- | --- | --- |
-| Need a simple baseline | Logistic regression | Fast, interpretable, strong baseline |
-| Need explainability | Logistic regression or shallow tree | Easy to explain decisions |
-| Linear decision boundary is enough | Logistic regression | Efficient and stable |
-| Non-linear rules matter | Decision tree | Captures thresholds and interactions |
-| Need high performance on tabular data | Random forest | Handles non-linearity and reduces variance |
-| Dataset is noisy | Random forest | Averaging stabilizes predictions |
-| Dataset is highly imbalanced | Any model + adapted metrics | Metric and threshold matter more than model alone |
-| False positives are costly | Optimize precision or F-beta with beta < 1 | Avoid false alarms |
-| False negatives are costly | Optimize recall or F-beta with beta > 1 | Avoid missed detections |
-| Need rare-event evaluation | PR curve / Average Precision | More informative than ROC when positives are rare |
+| Besoin d'un modèle de référence simple | Régression logistique | Rapide, interprétable, baseline solide |
+| Besoin d'explicabilité | Régression logistique ou arbre peu profond | Décisions faciles à expliquer |
+| Une frontière linéaire suffit | Régression logistique | Efficace et stable |
+| Les règles non linéaires comptent | Arbre de décision | Capture les seuils et interactions |
+| Besoin de forte performance sur données tabulaires | Forêt aléatoire | Gère la non-linéarité et réduit la variance |
+| Dataset bruité | Forêt aléatoire | La moyenne stabilise les prédictions |
+| Dataset très déséquilibré | N'importe quel modèle + métriques adaptées | La métrique et le seuil comptent plus que le modèle seul |
+| Les faux positifs coûtent cher | Optimiser precision ou F-beta avec beta < 1 | Éviter les fausses alertes |
+| Les faux négatifs coûtent cher | Optimiser recall ou F-beta avec beta > 1 | Éviter les détections manquées |
+| Évaluer un événement rare | Courbe PR / Average Precision | Plus informatif que ROC quand les positifs sont rares |
 
-Course comparison note:
+Note comparative du cours :
 
-- Logistic regression is the most interpretable and cheapest to train.
-- KNN can handle non-linearity but is expensive at inference because it compares new points with stored training data.
-- Random forest is less interpretable than logistic regression but usually stronger on non-linear tabular problems.
-- Tree-based methods can be more tolerant of messy feature behavior, but in practice you should still check how your implementation handles missing values and categorical variables.
-
----
-
-## 7. How to Answer Common Exam Questions
-
-### If Asked: "Why Is Accuracy Misleading?"
-
-Answer structure:
-
-1. Accuracy counts all correct predictions.
-2. In imbalanced data, the majority class dominates.
-3. A model can get high accuracy by always predicting the majority class.
-4. Use confusion matrix, precision, recall, F1, PR curve, and business-cost analysis instead.
-
-Example:
-
-```text
-Fraud rate = 0.1%.
-Always predicting "not fraud" gives 99.9% accuracy but 0% recall for fraud.
-```
-
-### If Asked: "How Does Logistic Regression Work?"
-
-Answer structure:
-
-1. It computes a linear score `z = beta_0 + beta^T X`.
-2. It transforms the score into a probability with sigmoid.
-3. It predicts class `1` if the probability is above a threshold.
-4. It learns coefficients by minimizing binary cross-entropy.
-5. Coefficients are interpreted through odds ratios.
-
-### If Asked: "How Do You Interpret a Logistic Coefficient?"
-
-Answer:
-
-```text
-A one-unit increase in x_j changes the log-odds by beta_j.
-The odds are multiplied by exp(beta_j), holding other variables constant.
-```
-
-If `beta_j` is negative, the odds decrease.
-
-### If Asked: "How Does CART Choose a Split?"
-
-Answer structure:
-
-1. For each feature, generate possible thresholds.
-2. Split the data at each threshold.
-3. Compute weighted impurity of child nodes.
-4. Choose the split with lowest weighted impurity.
-5. Repeat recursively.
-
-For classification, impurity is often Gini.
-
-For regression, impurity is often MSE.
-
-### If Asked: "Why Do Decision Trees Overfit?"
-
-Answer:
-
-Decision trees recursively split the data. If allowed to grow too deep, they can create leaves that fit small random patterns or noise in the training set. This gives low training error but poor generalization.
-
-Solutions:
-
-- Limit `max_depth`.
-- Increase `min_samples_leaf`.
-- Increase `min_samples_split`.
-- Use cost complexity pruning with `ccp_alpha`.
-- Use ensembles such as random forests.
-
-### If Asked: "How Does Random Forest Improve a Decision Tree?"
-
-Answer:
-
-Random forest trains many decision trees on different bootstrap samples and makes them more diverse by considering only a random subset of features at each split. It aggregates their predictions by majority vote or averaging. This reduces variance and makes predictions more stable than a single tree.
-
-### If Asked: "Why Are Random Features Important in Random Forest?"
-
-Answer:
-
-If every tree can always choose from all features, strong predictors may dominate early splits, making trees similar. Similar trees make similar errors, so averaging helps less. Random feature selection decorrelates the trees, improving variance reduction.
-
-### If Asked: "ROC or PR Curve?"
-
-Use ROC when:
-
-- Classes are relatively balanced.
-- False positive rate and true negative behavior matter.
-- You want a ranking measure like AUC.
-
-Use PR when:
-
-- The positive class is rare.
-- You care about precision and recall.
-- False positives among predicted positives are important.
+- La régression logistique est la plus interprétable et la moins coûteuse à entraîner.
+- KNN peut gérer la non-linéarité mais coûte cher à l'inférence car il compare les nouveaux points aux données d'entraînement stockées.
+- La forêt aléatoire est moins interprétable que la régression logistique mais généralement plus forte sur des problèmes tabulaires non linéaires.
+- Les méthodes à base d'arbres peuvent être plus tolérantes à certains comportements irréguliers des variables, mais en pratique il faut quand même vérifier comment l'implémentation gère les valeurs manquantes et les variables catégorielles.
 
 ---
 
-## 8. Final Mental Map
+## 7. Comment répondre aux questions classiques d'examen
 
-Logistic regression:
+### Si on demande : "Pourquoi l'accuracy est-elle trompeuse ?"
 
-- Linear in log-odds.
-- Outputs probabilities.
-- Trained with cross-entropy.
-- Interpretable through odds ratios.
-- Good baseline, weak for complex non-linear boundaries.
+Structure de réponse :
 
-Metrics:
+1. L'accuracy compte toutes les prédictions correctes.
+2. Dans des données déséquilibrées, la classe majoritaire domine.
+3. Un modèle peut obtenir une accuracy élevée en prédisant toujours la classe majoritaire.
+4. Il faut plutôt utiliser la matrice de confusion, precision, recall, F1, la courbe PR et l'analyse de coût métier.
 
-- Accuracy can fail on imbalance.
-- Precision controls false positives.
-- Recall controls false negatives.
-- F1 balances precision and recall.
-- F-beta weights precision vs recall.
-- ROC/AUC measures ranking across thresholds.
-- PR curves are better for rare positives.
+Exemple :
 
-Decision trees:
+```text
+Taux de fraude = 0.1 %.
+Toujours prédire "non-fraude" donne 99.9 % d'accuracy mais 0 % de recall sur la fraude.
+```
 
-- Recursive if/then splits.
-- CART chooses splits greedily.
-- Classification uses Gini or entropy.
-- Regression uses MSE.
-- Easy to interpret but unstable and prone to overfitting.
+### Si on demande : "Comment fonctionne la régression logistique ?"
 
-Random forests:
+Structure de réponse :
 
-- Many decision trees.
-- Bootstrap samples create different training sets.
-- Random feature subsets decorrelate trees.
-- Aggregation reduces variance.
-- Strong on tabular non-linear data, less interpretable than a single tree.
+1. Elle calcule un score linéaire `z = beta_0 + beta^T X`.
+2. Elle transforme ce score en probabilité avec la sigmoïde.
+3. Elle prédit la classe `1` si la probabilité dépasse un seuil.
+4. Elle apprend ses coefficients en minimisant la binary cross-entropy.
+5. Les coefficients s'interprètent via les odds ratios.
+
+### Si on demande : "Comment interpréter un coefficient logistique ?"
+
+Réponse :
+
+```text
+Une augmentation d'une unité de x_j change les log-odds de beta_j.
+Les odds sont multipliées par exp(beta_j), en gardant les autres variables constantes.
+```
+
+Si `beta_j` est négatif, les odds diminuent.
+
+### Si on demande : "Comment CART choisit-il un split ?"
+
+Structure de réponse :
+
+1. Pour chaque variable, générer les seuils possibles.
+2. Séparer les données à chaque seuil.
+3. Calculer l'impureté pondérée des noeuds enfants.
+4. Choisir le split avec l'impureté pondérée la plus faible.
+5. Répéter récursivement.
+
+En classification, l'impureté est souvent Gini.
+
+En régression, l'impureté est souvent la MSE.
+
+### Si on demande : "Pourquoi les arbres de décision overfittent-ils ?"
+
+Réponse :
+
+Les arbres de décision splitent les données récursivement. S'ils peuvent devenir trop profonds, ils créent des feuilles qui apprennent de petits motifs aléatoires ou du bruit dans le train set. Cela donne une faible erreur d'entraînement mais une mauvaise généralisation.
+
+Solutions :
+
+- Limiter `max_depth`.
+- Augmenter `min_samples_leaf`.
+- Augmenter `min_samples_split`.
+- Utiliser le cost complexity pruning avec `ccp_alpha`.
+- Utiliser des ensembles comme les forêts aléatoires.
+
+### Si on demande : "Comment la forêt aléatoire améliore-t-elle un arbre de décision ?"
+
+Réponse :
+
+La forêt aléatoire entraîne beaucoup d'arbres de décision sur différents échantillons bootstrap et les rend plus divers en ne considérant qu'un sous-ensemble aléatoire de variables à chaque split. Elle agrège leurs prédictions par vote majoritaire ou moyenne. Cela réduit la variance et rend les prédictions plus stables qu'un seul arbre.
+
+### Si on demande : "Pourquoi les variables aléatoires sont-elles importantes dans une forêt aléatoire ?"
+
+Réponse :
+
+Si chaque arbre peut toujours choisir parmi toutes les variables, les prédicteurs forts peuvent dominer les premiers splits, ce qui rend les arbres similaires. Des arbres similaires font des erreurs similaires, donc la moyenne aide moins. La sélection aléatoire des variables décorrèle les arbres et améliore la réduction de variance.
+
+### Si on demande : "ROC ou courbe PR ?"
+
+Utiliser ROC lorsque :
+
+- Les classes sont relativement équilibrées.
+- Le false positive rate et le comportement sur les vrais négatifs comptent.
+- On veut une mesure de ranking comme l'AUC.
+
+Utiliser PR lorsque :
+
+- La classe positive est rare.
+- On s'intéresse à precision et recall.
+- Les faux positifs parmi les prédictions positives sont importants.
+
+---
+
+## 8. Carte mentale finale
+
+Régression logistique :
+
+- Linéaire dans les log-odds.
+- Produit des probabilités.
+- Entraînée avec la cross-entropy.
+- Interprétable via les odds ratios.
+- Bonne baseline, faible pour les frontières non linéaires complexes.
+
+Métriques :
+
+- L'accuracy peut échouer sur données déséquilibrées.
+- La precision contrôle les faux positifs.
+- Le recall contrôle les faux négatifs.
+- Le F1 équilibre precision et recall.
+- Le F-beta pondère precision vs recall.
+- ROC/AUC mesure le ranking à travers les seuils.
+- Les courbes PR sont meilleures pour les positifs rares.
+
+Arbres de décision :
+
+- Splits récursifs de type if/then.
+- CART choisit les splits de façon gloutonne.
+- La classification utilise Gini ou l'entropie.
+- La régression utilise la MSE.
+- Faciles à interpréter mais instables et sujets à l'overfitting.
+
+Forêts aléatoires :
+
+- Beaucoup d'arbres de décision.
+- Les échantillons bootstrap créent différents jeux d'entraînement.
+- Les sous-ensembles aléatoires de variables décorrèlent les arbres.
+- L'agrégation réduit la variance.
+- Fortes sur données tabulaires non linéaires, moins interprétables qu'un seul arbre.
+

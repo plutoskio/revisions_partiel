@@ -8,8 +8,8 @@ text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; f
 .node { font-size: 13px; font-weight: 650; }
 </style>
 <rect x="0" y="0" width="720" height="420" fill="#ffffff"/>
-<text x="36.0" y="36.0" class="title" text-anchor="start">ROC curve</text>
-<text x="36.0" y="58.0" class="subtitle" text-anchor="start">Shows the recall gained for each amount of false alarm risk.</text>
+<text x="36.0" y="36.0" class="title" text-anchor="start">Courbe ROC</text>
+<text x="36.0" y="58.0" class="subtitle" text-anchor="start">Montre le recall gagné pour chaque niveau de risque de fausse alerte.</text>
 <line x1="82.0" y1="345.0" x2="642.0" y2="345.0" stroke="#e5e7eb" stroke-width="1"/>
 <line x1="82.0" y1="70.0" x2="82.0" y2="345.0" stroke="#e5e7eb" stroke-width="1"/>
 <text x="72.0" y="349.0" class="small" text-anchor="end">0</text>
@@ -34,8 +34,8 @@ text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; f
 <line x1="82.0" y1="70.0" x2="82.0" y2="345.0" stroke="#1f2937" stroke-width="2"/>
 <line x1="82.0" y1="345.0" x2="642.0" y2="70.0" stroke="#64748b" stroke-width="2" stroke-dasharray="7 7"/>
 <polyline points="82.0,345.0 93.2,284.5 110.0,213.0 138.0,152.5 182.8,114.0 261.2,89.2 390.0,75.5 642.0,70.0" fill="none" stroke="#2563eb" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="406.8" y="215.8" class="small" text-anchor="start">Random baseline</text>
-<text x="210.8" y="103.0" class="node" text-anchor="start">Better curve bends top-left</text>
+<text x="406.8" y="215.8" class="small" text-anchor="start">Baseline aléatoire</text>
+<text x="210.8" y="103.0" class="node" text-anchor="start">Bonne courbe : vers le haut-gauche</text>
 <text x="362.0" y="390.0" class="label" text-anchor="middle">False Positive Rate = 1 - specificity</text>
 <text x="25.0" y="207.5" class="label" text-anchor="middle">True Positive Rate = recall</text>
 </svg>
