@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="430" viewBox="0 0 760 430" role="img">
+<style>
+text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #1f2937; }
+.title { font-size: 24px; font-weight: 700; }
+.subtitle { font-size: 14px; fill: #64748b; }
+.label { font-size: 13px; fill: #64748b; }
+.small { font-size: 12px; fill: #64748b; }
+.node { font-size: 13px; font-weight: 650; }
+</style>
+<rect x="0" y="0" width="760" height="430" fill="#ffffff"/>
+<text x="36.0" y="36.0" class="title" text-anchor="start">Averaging reduces variance</text>
+<text x="36.0" y="58.0" class="subtitle" text-anchor="start">Individual trees can be noisy; the forest average is more stable.</text>
+<line x1="75.0" y1="72.0" x2="75.0" y2="357.0" stroke="#e5e7eb" stroke-width="1"/>
+<line x1="75.0" y1="357.0" x2="665.0" y2="357.0" stroke="#e5e7eb" stroke-width="1"/>
+<line x1="193.0" y1="72.0" x2="193.0" y2="357.0" stroke="#e5e7eb" stroke-width="1"/>
+<line x1="75.0" y1="300.0" x2="665.0" y2="300.0" stroke="#e5e7eb" stroke-width="1"/>
+<line x1="311.0" y1="72.0" x2="311.0" y2="357.0" stroke="#e5e7eb" stroke-width="1"/>
+<line x1="75.0" y1="243.0" x2="665.0" y2="243.0" stroke="#e5e7eb" stroke-width="1"/>
+<line x1="429.0" y1="72.0" x2="429.0" y2="357.0" stroke="#e5e7eb" stroke-width="1"/>
+<line x1="75.0" y1="186.0" x2="665.0" y2="186.0" stroke="#e5e7eb" stroke-width="1"/>
+<line x1="547.0" y1="72.0" x2="547.0" y2="357.0" stroke="#e5e7eb" stroke-width="1"/>
+<line x1="75.0" y1="129.0" x2="665.0" y2="129.0" stroke="#e5e7eb" stroke-width="1"/>
+<line x1="665.0" y1="72.0" x2="665.0" y2="357.0" stroke="#e5e7eb" stroke-width="1"/>
+<line x1="75.0" y1="72.0" x2="665.0" y2="72.0" stroke="#e5e7eb" stroke-width="1"/>
+<line x1="75.0" y1="357.0" x2="665.0" y2="357.0" stroke="#1f2937" stroke-width="2"/>
+<line x1="75.0" y1="72.0" x2="75.0" y2="357.0" stroke="#1f2937" stroke-width="2"/>
+<polyline points="75.0,288.6 104.5,257.8 134.0,237.8 163.5,234.3 193.0,245.3 222.5,261.9 252.0,272.6 281.5,268.7 311.0,248.4 340.5,217.5 370.0,186.8 399.5,167.2 429.0,164.1 458.5,175.3 488.0,191.9 517.5,202.4 547.0,198.1 576.5,177.4 606.0,146.3 635.5,115.8 665.0,96.6" fill="none" stroke="#93c5fd" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="75.0,257.5 104.5,249.2 134.0,255.7 163.5,270.3 193.0,282.5 222.5,282.8 252.0,267.3 281.5,239.8 311.0,209.4 340.5,186.8 370.0,178.9 399.5,185.7 429.0,200.4 458.5,212.3 488.0,212.2 517.5,196.4 547.0,168.7 576.5,138.4 606.0,116.1 635.5,108.5 665.0,115.6" fill="none" stroke="#fca5a5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="75.0,267.6 104.5,279.5 134.0,291.9 163.5,295.5 193.0,284.7 222.5,261.0 252.0,231.9 281.5,207.3 311.0,195.2 340.5,197.5 370.0,209.5 399.5,221.8 429.0,225.0 458.5,213.9 488.0,190.0 517.5,160.9 547.0,136.5 576.5,124.7 606.0,127.3 635.5,139.4 665.0,151.7" fill="none" stroke="#c4b5fd" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="75.0,301.3 104.5,307.1 134.0,300.5 163.5,280.9 193.0,253.9 222.5,228.4 252.0,212.8 281.5,210.8 311.0,219.5 340.5,231.2 370.0,236.8 399.5,229.8 429.0,210.0 458.5,182.9 488.0,157.6 517.5,142.3 547.0,140.5 576.5,149.4 606.0,161.1 635.5,166.4 665.0,159.2" fill="none" stroke="#5eead4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="75.0,315.0 104.5,299.5 134.0,275.1 163.5,249.8 193.0,231.6 222.5,225.5 252.0,230.7 281.5,240.9 311.0,247.8 340.5,244.4 370.0,228.6 399.5,204.1 429.0,178.9 458.5,160.9 488.0,155.2 517.5,160.5 547.0,170.8 576.5,177.6 606.0,173.8 635.5,157.7 665.0,133.2" fill="none" stroke="#fdba74" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="75.0,286.0 104.5,278.6 134.0,272.2 163.5,266.2 193.0,259.6 222.5,251.9 252.0,243.1 281.5,233.5 311.0,224.1 340.5,215.5 370.0,208.1 399.5,201.7 429.0,195.7 458.5,189.1 488.0,181.4 517.5,172.5 547.0,162.9 576.5,153.5 606.0,144.9 635.5,137.6 665.0,131.2" fill="none" stroke="#2563eb" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="475.0" y="135.0" class="small" text-anchor="start">Single trees: high variance</text>
+<text x="470.0" y="215.0" class="node" text-anchor="start">Forest average: smoother</text>
+<text x="370.0" y="400.0" class="label" text-anchor="middle">feature value</text>
+<text x="26.0" y="214.5" class="label" text-anchor="middle">prediction</text>
+</svg>
