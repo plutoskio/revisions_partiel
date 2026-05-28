@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="390" viewBox="0 0 780 390" role="img">
+<style>
+text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #1f2937; }
+.title { font-size: 24px; font-weight: 700; }
+.subtitle { font-size: 14px; fill: #64748b; }
+.label { font-size: 13px; fill: #64748b; }
+.small { font-size: 12px; fill: #64748b; }
+.node { font-size: 13px; font-weight: 650; }
+</style>
+<rect x="0" y="0" width="780" height="390" fill="#ffffff"/>
+<text x="36.0" y="36.0" class="title" text-anchor="start">GMM : Gaussiennes et responsabilités</text>
+<text x="36.0" y="58.0" class="subtitle" text-anchor="start">Chaque cluster a une moyenne, une covariance et un poids de mélange.</text>
+<ellipse cx="290.0" cy="220.0" rx="130.0" ry="55.0" fill="#dbeafe" stroke="#2563eb" stroke-width="3" opacity="0.75" transform="rotate(-25.0 290.0 220.0)"/>
+<ellipse cx="490.0" cy="220.0" rx="120.0" ry="65.0" fill="#fee2e2" stroke="#dc2626" stroke-width="3" opacity="0.75" transform="rotate(20.0 490.0 220.0)"/>
+<circle cx="284.2" cy="180.7" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="324.7" cy="235.2" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="215.2" cy="220.0" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="318.1" cy="207.7" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="285.4" cy="250.9" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="271.4" cy="209.2" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="346.4" cy="223.7" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="220.9" cy="242.8" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="300.0" cy="197.9" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="328.9" cy="250.4" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="252.4" cy="214.9" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="349.3" cy="205.8" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="279.7" cy="233.3" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="267.5" cy="195.1" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="309.4" cy="224.1" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="244.0" cy="227.5" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="325.7" cy="188.4" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="300.3" cy="238.1" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="496.3" cy="208.3" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="514.3" cy="242.6" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="415.1" cy="207.2" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="529.2" cy="211.4" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="462.5" cy="252.0" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="478.4" cy="204.2" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="544.7" cy="233.8" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="465.9" cy="223.4" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="517.0" cy="197.8" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="506.6" cy="258.6" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="454.3" cy="207.7" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="560.3" cy="215.1" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="468.2" cy="233.3" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="485.7" cy="189.4" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="508.8" cy="228.7" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="436.9" cy="220.0" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="548.9" cy="192.9" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="486.9" cy="241.8" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="390.0" cy="220.0" r="8.0" fill="#ea580c" stroke="#ffffff" stroke-width="1.5"/>
+<text x="390.0" y="255.0" class="node" text-anchor="middle">x : 60% cluster A, 40% cluster B</text>
+<text x="270.0" y="145.0" class="small" text-anchor="middle">Σ_A : ellipse inclinée</text>
+<text x="510.0" y="145.0" class="small" text-anchor="middle">Σ_B : autre forme</text>
+</svg>

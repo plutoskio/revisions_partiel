@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="420" viewBox="0 0 760 420" role="img">
+<style>
+text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #1f2937; }
+.title { font-size: 24px; font-weight: 700; }
+.subtitle { font-size: 14px; fill: #64748b; }
+.label { font-size: 13px; fill: #64748b; }
+.small { font-size: 12px; fill: #64748b; }
+.node { font-size: 13px; font-weight: 650; }
+</style>
+<rect x="0" y="0" width="760" height="420" fill="#ffffff"/>
+<text x="36.0" y="36.0" class="title" text-anchor="start">Cercle de corrélation PCA</text>
+<text x="36.0" y="58.0" class="subtitle" text-anchor="start">Les flèches montrent comment les variables originales se lient à PC1 et PC2.</text>
+<circle cx="385.0" cy="225.0" r="130.0" fill="none" stroke="#e5e7eb" stroke-width="2"/>
+<line x1="230.0" y1="225.0" x2="540.0" y2="225.0" stroke="#1f2937" stroke-width="1.5"/>
+<line x1="385.0" y1="70.0" x2="385.0" y2="380.0" stroke="#1f2937" stroke-width="1.5"/>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+</marker>
+</defs>
+<line x1="385.0" y1="225.0" x2="502.0" y2="192.5" stroke="#2563eb" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="510.0" y="196.5" class="node" text-anchor="start">revenu</text>
+<line x1="385.0" y1="225.0" x2="482.5" y2="212.0" stroke="#2563eb" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="490.5" y="216.0" class="node" text-anchor="start">panier</text>
+<line x1="385.0" y1="225.0" x2="287.5" y2="257.5" stroke="#dc2626" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="295.5" y="261.5" class="node" text-anchor="start">âge</text>
+<line x1="385.0" y1="225.0" x2="398.0" y2="114.5" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="406.0" y="118.5" class="node" text-anchor="start">visites</text>
+<line x1="385.0" y1="225.0" x2="404.5" y2="322.5" stroke="#16a34a" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="412.5" y="326.5" class="node" text-anchor="start">support</text>
+<text x="550.0" y="229.0" class="label" text-anchor="start">PC1</text>
+<text x="393.0" y="67.0" class="label" text-anchor="start">PC2</text>
+<text x="385.0" y="380.0" class="small" text-anchor="middle">Flèches proches = corrélation positive ; opposées = corrélation négative.</text>
+</svg>

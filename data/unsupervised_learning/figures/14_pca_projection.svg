@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="410" viewBox="0 0 760 410" role="img">
+<style>
+text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #1f2937; }
+.title { font-size: 24px; font-weight: 700; }
+.subtitle { font-size: 14px; fill: #64748b; }
+.label { font-size: 13px; fill: #64748b; }
+.small { font-size: 12px; fill: #64748b; }
+.node { font-size: 13px; font-weight: 650; }
+</style>
+<rect x="0" y="0" width="760" height="410" fill="#ffffff"/>
+<text x="36.0" y="36.0" class="title" text-anchor="start">PCA : projeter sur les axes de variance</text>
+<text x="36.0" y="58.0" class="subtitle" text-anchor="start">PC1 maximise la variance ; PC2 est orthogonale à PC1.</text>
+<ellipse cx="390.0" cy="220.0" rx="180.0" ry="70.0" fill="#dbeafe" stroke="#2563eb" stroke-width="2" opacity="0.45" transform="rotate(-25.0 390.0 220.0)"/>
+<circle cx="240.0" cy="290.0" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="248.3" cy="301.6" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="256.7" cy="266.5" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="265.0" cy="278.6" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="273.3" cy="289.8" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="281.7" cy="254.7" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="290.0" cy="267.3" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="298.3" cy="278.0" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="306.7" cy="242.9" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="315.0" cy="255.9" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="323.3" cy="266.2" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="331.7" cy="231.1" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="340.0" cy="244.5" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="348.3" cy="254.3" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="356.7" cy="219.3" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="365.0" cy="233.2" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="373.3" cy="242.5" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="381.7" cy="207.5" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="390.0" cy="221.8" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="398.3" cy="230.7" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="406.7" cy="195.7" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="415.0" cy="210.4" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="423.3" cy="218.8" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="431.7" cy="183.9" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="440.0" cy="199.1" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="448.3" cy="207.0" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="456.7" cy="172.2" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="465.0" cy="187.7" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="473.3" cy="195.1" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="481.7" cy="160.4" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="490.0" cy="176.3" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="498.3" cy="183.2" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="506.7" cy="148.6" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="515.0" cy="165.0" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="523.3" cy="171.4" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="531.7" cy="136.8" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<line x1="217.8" y1="300.3" x2="562.2" y2="139.7" stroke="#ea580c" stroke-width="4"/>
+<line x1="352.0" y1="138.4" x2="428.0" y2="301.6" stroke="#7c3aed" stroke-width="3"/>
+<text x="565.0" y="145.0" class="node" text-anchor="start">PC1</text>
+<text x="455.0" y="310.0" class="node" text-anchor="start">PC2</text>
+<text x="390.0" y="355.0" class="small" text-anchor="middle">La projection conserve l'information principale avec moins de dimensions.</text>
+</svg>

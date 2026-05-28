@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="400" viewBox="0 0 780 400" role="img">
+<style>
+text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #1f2937; }
+.title { font-size: 24px; font-weight: 700; }
+.subtitle { font-size: 14px; fill: #64748b; }
+.label { font-size: 13px; fill: #64748b; }
+.small { font-size: 12px; fill: #64748b; }
+.node { font-size: 13px; font-weight: 650; }
+</style>
+<rect x="0" y="0" width="780" height="400" fill="#ffffff"/>
+<text x="36.0" y="36.0" class="title" text-anchor="start">t-SNE vs UMAP : ne pas surinterpréter</text>
+<text x="36.0" y="58.0" class="subtitle" text-anchor="start">Ces projections visualisent des voisinages, mais déforment certaines distances.</text>
+<rect x="55.0" y="95.0" width="300.0" height="250.0" rx="12.0" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+<text x="205.0" y="125.0" class="node" text-anchor="middle">t-SNE</text>
+<circle cx="130.0" cy="213.0" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="163.5" cy="227.9" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="129.5" cy="232.6" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="144.0" cy="204.3" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="145.5" cy="233.8" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="122.2" cy="220.2" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="146.8" cy="221.4" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="134.9" cy="240.0" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="130.3" cy="203.2" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="152.1" cy="230.2" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="120.0" cy="232.3" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="144.8" cy="215.6" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="258.9" cy="174.2" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="270.6" cy="192.7" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="251.3" cy="194.2" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="276.2" cy="170.6" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="267.6" cy="201.4" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="248.6" cy="179.0" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="274.0" cy="188.6" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="254.5" cy="203.5" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="264.4" cy="183.6" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="275.8" cy="199.7" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="242.4" cy="190.4" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="273.5" cy="181.8" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="259.4" cy="251.8" r="5.0" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="265.3" cy="275.3" r="5.0" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="244.4" cy="269.5" r="5.0" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="277.9" cy="254.5" r="5.0" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="258.6" cy="282.9" r="5.0" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="247.3" cy="253.2" r="5.0" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="270.2" cy="271.8" r="5.0" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="244.5" cy="280.0" r="5.0" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="261.9" cy="262.5" r="5.0" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="267.7" cy="283.8" r="5.0" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="237.3" cy="262.6" r="5.0" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="272.0" cy="264.4" r="5.0" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+<text x="205.0" y="325.0" class="small" text-anchor="middle">excellent pour séparer localement</text>
+<rect x="425.0" y="95.0" width="300.0" height="250.0" rx="12.0" fill="#ccfbf1" stroke="#0f766e" stroke-width="2"/>
+<text x="575.0" y="125.0" class="node" text-anchor="middle">UMAP</text>
+<circle cx="510.7" cy="206.3" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="508.9" cy="233.0" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="489.2" cy="218.9" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="510.8" cy="222.7" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="499.0" cy="238.0" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="498.1" cy="203.7" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="515.2" cy="230.7" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="485.8" cy="229.8" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="509.9" cy="217.4" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="508.0" cy="241.9" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="499.9" cy="221.1" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="519.4" cy="223.5" r="5.0" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="597.3" cy="188.1" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="586.2" cy="215.1" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="571.0" cy="193.3" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="592.6" cy="204.6" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="574.1" cy="216.2" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="585.4" cy="181.3" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="593.7" cy="214.7" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="564.0" cy="203.2" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="593.2" cy="198.6" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="582.1" cy="223.2" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="580.7" cy="198.6" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="600.4" cy="208.6" r="5.0" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="658.2" cy="247.3" r="5.0" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="637.6" cy="271.2" r="5.0" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="629.9" cy="243.2" r="5.0" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="648.5" cy="262.4" r="5.0" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="624.9" cy="267.7" r="5.0" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="642.1" cy="254.1" r="5.0" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="645.6" cy="273.2" r="5.0" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="619.6" cy="250.9" r="5.0" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="651.1" cy="256.2" r="5.0" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="630.7" cy="277.4" r="5.0" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="637.7" cy="251.2" r="5.0" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+<circle cx="654.5" cy="269.1" r="5.0" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+<text x="575.0" y="325.0" class="small" text-anchor="middle">garde mieux la structure globale</text>
+</svg>
