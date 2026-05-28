@@ -46,9 +46,7 @@ Malgré son nom, la régression logistique est un modèle de classification.
 
 Elle prédit la probabilité qu'une observation appartienne à la classe `1` :
 
-```text
-P(y = 1 | X)
-```
+![Formule de probabilité prédite](formulas_fr/inline_01_target_probability.svg)
 
 C'est un modèle linéaire, car il suppose que les log-odds de la classe positive sont une combinaison linéaire des variables explicatives.
 
@@ -63,23 +61,17 @@ Il faut souvent l'utiliser comme modèle de référence, car il est :
 
 Un modèle linéaire peut produire n'importe quelle valeur entre `-infinity` et `+infinity` :
 
-```text
-z = beta_0 + beta_1 x_1 + ... + beta_p x_p
-```
+![Formule du score linéaire](formulas_fr/inline_02_linear_score.svg)
 
 Mais une probabilité doit rester entre `0` et `1`.
 
 La régression logistique transforme donc le score linéaire `z` avec la fonction sigmoïde :
 
-```text
-sigma(z) = 1 / (1 + exp(-z))
-```
+![Formule de la sigmoïde](formulas_fr/inline_03_sigmoid.svg)
 
 Ce qui donne :
 
-```text
-P(y = 1 | X) = sigma(beta_0 + beta_1 x_1 + ... + beta_p x_p)
-```
+![Formule de probabilité logistique](formulas_fr/inline_04_logistic_probability.svg)
 
 La sigmoïde est appropriée parce que :
 
@@ -93,27 +85,19 @@ La sigmoïde est appropriée parce que :
 
 Probabilité :
 
-```text
-p = P(y = 1)
-```
+![Formule de notation de probabilité](formulas_fr/inline_37_probability_definition.svg)
 
 Odds :
 
-```text
-odds = p / (1 - p)
-```
+![Formule des odds](formulas_fr/inline_05_odds.svg)
 
 Log-odds, aussi appelés logit :
 
-```text
-log(odds) = log(p / (1 - p))
-```
+![Formule des log-odds](formulas_fr/inline_06_log_odds.svg)
 
 La régression logistique suppose que :
 
-```text
-log(p / (1 - p)) = beta_0 + beta_1 x_1 + ... + beta_p x_p
-```
+![Formule du modèle logit](formulas_fr/inline_07_logit_model.svg)
 
 La régression logistique est donc une régression linéaire sur les log-odds, pas directement sur la probabilité.
 
@@ -121,15 +105,11 @@ La régression logistique est donc une régression linéaire sur les log-odds, p
 
 Par défaut, la régression logistique prédit la classe `1` lorsque :
 
-```text
-P(y = 1 | X) > 0.5
-```
+![Formule de règle de seuil](formulas_fr/inline_08_threshold.svg)
 
 Comme `sigmoid(0) = 0.5`, la frontière de décision est l'ensemble des points où :
 
-```text
-beta_0 + beta_1 x_1 + ... + beta_p x_p = 0
-```
+![Formule de frontière de décision](formulas_fr/inline_09_decision_boundary.svg)
 
 En 2D, c'est une droite. En dimension plus élevée, c'est un hyperplan.
 
@@ -143,10 +123,7 @@ Chaque coefficient modifie les log-odds.
 
 Si `x_j` augmente d'une unité :
 
-```text
-les log-odds augmentent de beta_j
-les odds sont multipliées par exp(beta_j)
-```
+![Formule d'interprétation d'un coefficient](formulas_fr/inline_10_coefficient_interpretation.svg)
 
 Interprétation :
 
@@ -170,15 +147,11 @@ Phrase importante pour l'examen : "toutes choses égales par ailleurs" compte, c
 
 En classification binaire, la cible suit une distribution de Bernoulli :
 
-```text
-y in {0, 1}
-```
+![Formule de cible binaire](formulas_fr/inline_11_binary_target.svg)
 
 La bonne fonction de perte est la binary cross-entropy, aussi appelée log-loss :
 
-```text
-J(beta) = -(1/n) * sum[ y_i log(yhat_i) + (1 - y_i) log(1 - yhat_i) ]
-```
+![Formule de binary cross-entropy](formulas_fr/inline_12_binary_cross_entropy.svg)
 
 Elle vient de l'estimation par maximum de vraisemblance pour une variable de Bernoulli.
 
@@ -196,15 +169,11 @@ Il n'existe pas de solution fermée simple comme en régression linéaire ordina
 
 Règle de mise à jour générale :
 
-```text
-beta_new = beta_old - learning_rate * gradient
-```
+![Formule de mise à jour par gradient](formulas_fr/inline_13_gradient_update.svg)
 
 Le gradient a la forme intuitive suivante :
 
-```text
-sum( (yhat_i - y_i) * x_ij )
-```
+![Formule d'intuition du gradient](formulas_fr/inline_14_logistic_gradient.svg)
 
 Cela signifie que le modèle ajuste chaque coefficient selon :
 
@@ -215,9 +184,7 @@ Cela signifie que le modèle ajuste chaque coefficient selon :
 
 La régression logistique doit généralement utiliser des variables standardisées :
 
-```text
-x_scaled = (x - mean) / standard_deviation
-```
+![Formule de standardisation](formulas_fr/inline_15_standardization.svg)
 
 Pourquoi :
 
@@ -249,9 +216,7 @@ Avantage : simple et compatible avec n'importe quel classifieur binaire.
 
 Softmax produit directement une distribution de probabilité sur toutes les classes :
 
-```text
-P(y = k | X) = exp(z_k) / sum_j exp(z_j)
-```
+![Formule softmax](formulas_fr/inline_16_softmax.svg)
 
 Propriétés :
 
@@ -316,9 +281,7 @@ Terminologie statistique :
 
 ### Accuracy
 
-```text
-Accuracy = (TP + TN) / (TP + TN + FP + FN)
-```
+![Formule d'accuracy](formulas_fr/inline_17_accuracy.svg)
 
 L'accuracy répond à la question :
 
@@ -332,9 +295,7 @@ Elle est dangereuse sur des données déséquilibrées. Exemple : si la fraude r
 
 ### Precision
 
-```text
-Precision = TP / (TP + FP)
-```
+![Formule de precision](formulas_fr/inline_18_precision.svg)
 
 La precision répond à la question :
 
@@ -354,9 +315,7 @@ Exemples :
 
 ### Recall
 
-```text
-Recall = TP / (TP + FN)
-```
+![Formule de recall](formulas_fr/inline_19_recall.svg)
 
 Le recall est aussi appelé sensibilité ou true positive rate.
 
@@ -378,9 +337,7 @@ Exemples :
 
 ### Specificity
 
-```text
-Specificity = TN / (TN + FP)
-```
+![Formule de specificity](formulas_fr/inline_20_specificity.svg)
 
 La specificity répond à la question :
 
@@ -392,9 +349,7 @@ Une specificity élevée signifie que le modèle évite les fausses alertes parm
 
 Relation :
 
-```text
-False Positive Rate = 1 - Specificity = FP / (FP + TN)
-```
+![Formule de false positive rate](formulas_fr/inline_21_fpr.svg)
 
 ### Precision vs recall vs specificity
 
@@ -420,9 +375,7 @@ La plupart des classifieurs produisent d'abord un score ou une probabilité, pui
 
 Pour la régression logistique :
 
-```text
-predict positive if P(y = 1 | X) > threshold
-```
+![Formule de règle de décision avec seuil](formulas_fr/inline_38_threshold_variable.svg)
 
 Si le seuil augmente :
 
@@ -444,9 +397,7 @@ Le seuil doit être choisi selon le coût des erreurs, pas automatiquement laiss
 
 Le F1 combine precision et recall :
 
-```text
-F1 = 2 * (Precision * Recall) / (Precision + Recall)
-```
+![Formule du F1-score](formulas_fr/inline_22_f1.svg)
 
 C'est la moyenne harmonique de la precision et du recall.
 
@@ -468,9 +419,7 @@ Ne pas utiliser le F1 aveuglément si le coût métier des FP et des FN n'est pa
 
 Le F-beta généralise le F1 :
 
-```text
-F_beta = (1 + beta^2) * (Precision * Recall) / ((beta^2 * Precision) + Recall)
-```
+![Formule du F-beta score](formulas_fr/inline_23_fbeta.svg)
 
 Interprétation :
 
@@ -491,9 +440,7 @@ Quand `beta > 1`, F-beta met l'accent sur le recall même si le dénominateur co
 
 Le meilleur seuil est souvent celui qui minimise le coût métier attendu :
 
-```text
-Total Cost = FP * Cost(FP) + FN * Cost(FN)
-```
+![Formule de coût total](formulas_fr/inline_24_cost.svg)
 
 Exemple :
 
@@ -531,9 +478,7 @@ Interprétation :
 
 Interprétation importante :
 
-```text
-AUC = probabilité qu'un positif choisi au hasard reçoive un score plus élevé qu'un négatif choisi au hasard.
-```
+![Formule d'interprétation de l'AUC](formulas_fr/inline_25_auc.svg)
 
 L'AUC mesure la qualité du ranking, pas la calibration.
 
@@ -556,15 +501,11 @@ Une courbe precision-recall trace :
 
 Le point idéal est en haut à droite :
 
-```text
-Recall = 1 and Precision = 1
-```
+![Formule du point precision-recall parfait](formulas_fr/inline_39_pr_perfect.svg)
 
 La baseline aléatoire est :
 
-```text
-taux de classe positive = nombre de positifs / nombre total d'exemples
-```
+![Formule de baseline de courbe precision-recall](formulas_fr/inline_40_pr_baseline.svg)
 
 Utiliser les courbes PR lorsque :
 
@@ -661,9 +602,7 @@ L'impureté de Gini mesure à quel point un noeud est mélangé.
 
 Pour un noeud `D` avec `c` classes :
 
-```text
-Gini(D) = 1 - sum_i p_i^2
-```
+![Formule de l'impureté de Gini](formulas_fr/inline_26_gini.svg)
 
 où `p_i` est la proportion de la classe `i` dans le noeud.
 
@@ -675,10 +614,7 @@ Interprétation :
 
 Gini pondéré après un split :
 
-```text
-Gini_split = (|D_left| / |D|) * Gini(D_left)
-           + (|D_right| / |D|) * Gini(D_right)
-```
+![Formule du Gini pondéré](formulas_fr/inline_27_weighted_gini.svg)
 
 Le meilleur split est celui avec le `Gini_split` le plus faible.
 
@@ -688,15 +624,11 @@ Le meilleur split est celui avec le `Gini_split` le plus faible.
 
 L'entropie est une autre mesure d'impureté :
 
-```text
-H(D) = - sum_i p_i log2(p_i)
-```
+![Formule d'entropie](formulas_fr/inline_28_entropy.svg)
 
 L'information gain mesure la baisse d'entropie après un split :
 
-```text
-IG(D, split) = H(D) - weighted_child_entropy
-```
+![Formule d'information gain](formulas_fr/inline_29_information_gain.svg)
 
 Comparaison :
 
@@ -712,17 +644,13 @@ Au lieu de minimiser l'impureté de Gini, ils minimisent la mean squared error.
 
 Pour un noeud `t` :
 
-```text
-MSE(t) = (1 / |D_t|) * sum_{i in D_t} (y_i - mean_y_t)^2
-```
+![Formule de MSE d'arbre de régression](formulas_fr/inline_30_tree_mse.svg)
 
 Un split est bon s'il réduit la MSE pondérée des noeuds enfants.
 
 Prédiction dans une feuille :
 
-```text
-valeur prédite = moyenne de la cible des observations d'entraînement dans cette feuille
-```
+![Formule de prédiction d'une feuille de régression](formulas_fr/inline_41_leaf_prediction.svg)
 
 Limite importante : les arbres de régression extrapolent mal. S'ils sont entraînés uniquement sur des logements de 30m2 à 110m2, ils ne peuvent pas prédire de façon fiable les prix pour 150m2, car ils ne font que moyenner des valeurs vues dans les feuilles.
 
@@ -732,10 +660,7 @@ Les arbres de décision créent des frontières alignées avec les axes.
 
 En 2D, ils splitent sous la forme :
 
-```text
-x_1 <= threshold
-x_2 <= threshold
-```
+![Formules de splits alignés sur les axes](formulas_fr/inline_42_axis_splits.svg)
 
 Leurs régions de décision ressemblent donc à des rectangles ou à des marches.
 
@@ -771,9 +696,7 @@ Le post-élagage construit d'abord l'arbre, puis retire les branches inutiles.
 
 Le cost complexity pruning utilise :
 
-```text
-R_alpha(T) = R(T) + alpha * |T|
-```
+![Formule de cost-complexity pruning](formulas_fr/inline_31_ccp.svg)
 
 où :
 
@@ -803,9 +726,7 @@ Une variable est importante si :
 
 Idée générale :
 
-```text
-Importance(feature) = somme des diminutions d'impureté pondérées causées par cette variable
-```
+![Formule d'importance des variables](formulas_fr/inline_32_importance.svg)
 
 Cela s'appelle Mean Decrease in Impurity, ou MDI.
 
@@ -848,15 +769,11 @@ Au lieu de dépendre d'un seul arbre, elle entraîne beaucoup d'arbres et combin
 
 Pour la classification :
 
-```text
-prédiction finale = vote majoritaire des arbres
-```
+![Formule de vote majoritaire d'une forêt aléatoire](formulas_fr/inline_33_forest_vote.svg)
 
 Pour la régression :
 
-```text
-prédiction finale = moyenne des prédictions des arbres
-```
+![Formule de moyenne d'une forêt aléatoire](formulas_fr/inline_34_forest_average.svg)
 
 Le but est de réduire la forte variance des arbres de décision individuels.
 
@@ -962,17 +879,13 @@ où `d` est le nombre total de variables.
 
 Si l'on moyenne `B` modèles indépendants, chacun avec une variance `sigma^2` :
 
-```text
-Variance(mean) = sigma^2 / B
-```
+![Formule de variance d'une moyenne](formulas_fr/inline_35_variance_mean.svg)
 
 Donc plus il y a d'arbres indépendants, plus la variance diminue.
 
 Mais les arbres ne sont pas parfaitement indépendants. Si leur corrélation est `rho`, la variance de la forêt est :
 
-```text
-Variance(forest) = rho * sigma^2 + ((1 - rho) / B) * sigma^2
-```
+![Formule de variance d'une forêt aléatoire](formulas_fr/inline_36_variance_forest.svg)
 
 Cette formule explique les forêts aléatoires :
 

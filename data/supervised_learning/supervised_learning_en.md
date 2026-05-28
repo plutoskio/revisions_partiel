@@ -46,9 +46,7 @@ Despite the name, logistic regression is a classification model.
 
 It predicts the probability that an observation belongs to class `1`:
 
-```text
-P(y = 1 | X)
-```
+![Predicted probability formula](formulas_en/inline_01_target_probability.svg)
 
 It is a linear model because it assumes the log-odds of the positive class are a linear combination of the features.
 
@@ -63,23 +61,17 @@ Use it as a baseline model because it is:
 
 A linear model can output any value from `-infinity` to `+infinity`:
 
-```text
-z = beta_0 + beta_1 x_1 + ... + beta_p x_p
-```
+![Linear score formula](formulas_en/inline_02_linear_score.svg)
 
 But a probability must stay between `0` and `1`.
 
 So logistic regression transforms the linear score `z` using the sigmoid function:
 
-```text
-sigma(z) = 1 / (1 + exp(-z))
-```
+![Sigmoid formula](formulas_en/inline_03_sigmoid.svg)
 
 This gives:
 
-```text
-P(y = 1 | X) = sigma(beta_0 + beta_1 x_1 + ... + beta_p x_p)
-```
+![Logistic probability formula](formulas_en/inline_04_logistic_probability.svg)
 
 The sigmoid is appropriate because:
 
@@ -93,27 +85,19 @@ The sigmoid is appropriate because:
 
 Probability:
 
-```text
-p = P(y = 1)
-```
+![Probability shorthand formula](formulas_en/inline_37_probability_definition.svg)
 
 Odds:
 
-```text
-odds = p / (1 - p)
-```
+![Odds formula](formulas_en/inline_05_odds.svg)
 
 Log-odds, also called the logit:
 
-```text
-log(odds) = log(p / (1 - p))
-```
+![Log-odds formula](formulas_en/inline_06_log_odds.svg)
 
 Logistic regression assumes:
 
-```text
-log(p / (1 - p)) = beta_0 + beta_1 x_1 + ... + beta_p x_p
-```
+![Logit model formula](formulas_en/inline_07_logit_model.svg)
 
 So logistic regression is linear regression on the log-odds, not directly on the probability.
 
@@ -121,15 +105,11 @@ So logistic regression is linear regression on the log-odds, not directly on the
 
 By default, logistic regression predicts class `1` when:
 
-```text
-P(y = 1 | X) > 0.5
-```
+![Default threshold formula](formulas_en/inline_08_threshold.svg)
 
 Since `sigmoid(0) = 0.5`, the decision boundary is where:
 
-```text
-beta_0 + beta_1 x_1 + ... + beta_p x_p = 0
-```
+![Decision boundary formula](formulas_en/inline_09_decision_boundary.svg)
 
 In 2D, this is a line. In higher dimensions, it is a hyperplane.
 
@@ -143,10 +123,7 @@ Each coefficient changes the log-odds.
 
 If `x_j` increases by 1 unit:
 
-```text
-log-odds increase by beta_j
-odds are multiplied by exp(beta_j)
-```
+![Coefficient interpretation formula](formulas_en/inline_10_coefficient_interpretation.svg)
 
 Interpretation:
 
@@ -170,15 +147,11 @@ Important exam phrase: "all else equal" matters because the coefficient is inter
 
 For binary classification, the target follows a Bernoulli distribution:
 
-```text
-y in {0, 1}
-```
+![Binary target formula](formulas_en/inline_11_binary_target.svg)
 
 The correct loss is binary cross-entropy, also called log-loss:
 
-```text
-J(beta) = -(1/n) * sum[ y_i log(yhat_i) + (1 - y_i) log(1 - yhat_i) ]
-```
+![Binary cross-entropy formula](formulas_en/inline_12_binary_cross_entropy.svg)
 
 This comes from maximum likelihood estimation for a Bernoulli variable.
 
@@ -196,15 +169,11 @@ There is no simple closed-form solution like ordinary linear regression. Logisti
 
 Generic update rule:
 
-```text
-beta_new = beta_old - learning_rate * gradient
-```
+![Gradient descent update formula](formulas_en/inline_13_gradient_update.svg)
 
 The gradient has the intuitive form:
 
-```text
-sum( (yhat_i - y_i) * x_ij )
-```
+![Logistic gradient intuition formula](formulas_en/inline_14_logistic_gradient.svg)
 
 That means the model adjusts each coefficient according to:
 
@@ -215,9 +184,7 @@ That means the model adjusts each coefficient according to:
 
 Logistic regression should usually use standardized features:
 
-```text
-x_scaled = (x - mean) / standard_deviation
-```
+![Standardization formula](formulas_en/inline_15_standardization.svg)
 
 Why:
 
@@ -249,9 +216,7 @@ Advantage: simple and works with any binary classifier.
 
 Softmax directly outputs a probability distribution over all classes:
 
-```text
-P(y = k | X) = exp(z_k) / sum_j exp(z_j)
-```
+![Softmax formula](formulas_en/inline_16_softmax.svg)
 
 Properties:
 
@@ -316,9 +281,7 @@ Statistical terminology:
 
 ### Accuracy
 
-```text
-Accuracy = (TP + TN) / (TP + TN + FP + FN)
-```
+![Accuracy formula](formulas_en/inline_17_accuracy.svg)
 
 Accuracy answers:
 
@@ -332,9 +295,7 @@ It is dangerous on imbalanced data. Example: if fraud is 0.1% of the dataset, a 
 
 ### Precision
 
-```text
-Precision = TP / (TP + FP)
-```
+![Precision formula](formulas_en/inline_18_precision.svg)
 
 Precision answers:
 
@@ -354,9 +315,7 @@ Examples:
 
 ### Recall
 
-```text
-Recall = TP / (TP + FN)
-```
+![Recall formula](formulas_en/inline_19_recall.svg)
 
 Recall is also called sensitivity or true positive rate.
 
@@ -378,9 +337,7 @@ Examples:
 
 ### Specificity
 
-```text
-Specificity = TN / (TN + FP)
-```
+![Specificity formula](formulas_en/inline_20_specificity.svg)
 
 Specificity answers:
 
@@ -392,9 +349,7 @@ High specificity means the model avoids false alarms among negatives.
 
 Relationship:
 
-```text
-False Positive Rate = 1 - Specificity = FP / (FP + TN)
-```
+![False positive rate formula](formulas_en/inline_21_fpr.svg)
 
 ### Precision vs Recall vs Specificity
 
@@ -420,9 +375,7 @@ Most classifiers produce a score or probability first, then apply a threshold.
 
 For logistic regression:
 
-```text
-predict positive if P(y = 1 | X) > threshold
-```
+![Threshold decision rule formula](formulas_en/inline_38_threshold_variable.svg)
 
 If threshold increases:
 
@@ -444,9 +397,7 @@ The threshold should be chosen according to the cost of mistakes, not automatica
 
 F1 combines precision and recall:
 
-```text
-F1 = 2 * (Precision * Recall) / (Precision + Recall)
-```
+![F1 formula](formulas_en/inline_22_f1.svg)
 
 It is the harmonic mean of precision and recall.
 
@@ -468,9 +419,7 @@ Do not use F1 blindly if the business cost of FP and FN is not balanced.
 
 F-beta generalizes F1:
 
-```text
-F_beta = (1 + beta^2) * (Precision * Recall) / ((beta^2 * Precision) + Recall)
-```
+![F-beta formula](formulas_en/inline_23_fbeta.svg)
 
 Interpretation:
 
@@ -491,9 +440,7 @@ When `beta > 1`, F-beta emphasizes recall even though the denominator contains `
 
 The best threshold is often the one that minimizes expected business cost:
 
-```text
-Total Cost = FP * Cost(FP) + FN * Cost(FN)
-```
+![Cost-based threshold formula](formulas_en/inline_24_cost.svg)
 
 Example:
 
@@ -531,9 +478,7 @@ Interpretation:
 
 Important interpretation:
 
-```text
-AUC = probability that a randomly chosen positive receives a higher score than a randomly chosen negative.
-```
+![AUC interpretation formula](formulas_en/inline_25_auc.svg)
 
 AUC measures ranking quality, not calibration.
 
@@ -556,15 +501,11 @@ A precision-recall curve plots:
 
 The ideal point is top-right:
 
-```text
-Recall = 1 and Precision = 1
-```
+![Perfect precision-recall point formula](formulas_en/inline_39_pr_perfect.svg)
 
 The random baseline is:
 
-```text
-positive class rate = number of positives / total examples
-```
+![Precision-recall baseline formula](formulas_en/inline_40_pr_baseline.svg)
 
 Use PR curves when:
 
@@ -661,9 +602,7 @@ Gini impurity measures how mixed a node is.
 
 For a node `D` with `c` classes:
 
-```text
-Gini(D) = 1 - sum_i p_i^2
-```
+![Gini impurity formula](formulas_en/inline_26_gini.svg)
 
 where `p_i` is the proportion of class `i` in the node.
 
@@ -675,10 +614,7 @@ Interpretation:
 
 Weighted Gini after a split:
 
-```text
-Gini_split = (|D_left| / |D|) * Gini(D_left)
-           + (|D_right| / |D|) * Gini(D_right)
-```
+![Weighted Gini split formula](formulas_en/inline_27_weighted_gini.svg)
 
 The best split is the one with the lowest `Gini_split`.
 
@@ -688,15 +624,11 @@ The best split is the one with the lowest `Gini_split`.
 
 Entropy is another impurity measure:
 
-```text
-H(D) = - sum_i p_i log2(p_i)
-```
+![Entropy formula](formulas_en/inline_28_entropy.svg)
 
 Information gain measures how much entropy decreases after a split:
 
-```text
-IG(D, split) = H(D) - weighted_child_entropy
-```
+![Information gain formula](formulas_en/inline_29_information_gain.svg)
 
 Comparison:
 
@@ -712,17 +644,13 @@ Instead of minimizing Gini impurity, they minimize mean squared error.
 
 For a node `t`:
 
-```text
-MSE(t) = (1 / |D_t|) * sum_{i in D_t} (y_i - mean_y_t)^2
-```
+![Regression tree MSE formula](formulas_en/inline_30_tree_mse.svg)
 
 A split is good if it reduces the weighted MSE of the child nodes.
 
 Prediction in a leaf:
 
-```text
-predicted value = mean target value of training observations in that leaf
-```
+![Regression tree leaf prediction formula](formulas_en/inline_41_leaf_prediction.svg)
 
 Important limitation: regression trees do not extrapolate well. If trained only on houses from 30m2 to 110m2, they cannot reliably predict prices for 150m2 because they only average values seen in leaves.
 
@@ -732,10 +660,7 @@ Decision trees create axis-aligned boundaries.
 
 In 2D, they split like:
 
-```text
-x_1 <= threshold
-x_2 <= threshold
-```
+![Axis-aligned tree split formulas](formulas_en/inline_42_axis_splits.svg)
 
 So their decision regions look rectangular or step-like.
 
@@ -771,9 +696,7 @@ Post-pruning grows a tree first, then removes branches that are not useful.
 
 Cost complexity pruning uses:
 
-```text
-R_alpha(T) = R(T) + alpha * |T|
-```
+![Cost-complexity pruning formula](formulas_en/inline_31_ccp.svg)
 
 where:
 
@@ -803,9 +726,7 @@ A feature is important if:
 
 General idea:
 
-```text
-Importance(feature) = sum of weighted impurity decreases caused by that feature
-```
+![Tree feature importance formula](formulas_en/inline_32_importance.svg)
 
 This is called Mean Decrease in Impurity, or MDI.
 
@@ -848,15 +769,11 @@ Instead of relying on one tree, it trains many trees and combines their predicti
 
 For classification:
 
-```text
-final prediction = majority vote of the trees
-```
+![Random forest majority vote formula](formulas_en/inline_33_forest_vote.svg)
 
 For regression:
 
-```text
-final prediction = average prediction of the trees
-```
+![Random forest averaging formula](formulas_en/inline_34_forest_average.svg)
 
 The purpose is to reduce the high variance of individual decision trees.
 
@@ -962,17 +879,13 @@ where `d` is the total number of features.
 
 If we average `B` independent models, each with variance `sigma^2`:
 
-```text
-Variance(mean) = sigma^2 / B
-```
+![Variance of an average formula](formulas_en/inline_35_variance_mean.svg)
 
 So more independent trees means lower variance.
 
 But trees are not perfectly independent. If their correlation is `rho`, the forest variance is:
 
-```text
-Variance(forest) = rho * sigma^2 + ((1 - rho) / B) * sigma^2
-```
+![Random forest variance formula](formulas_en/inline_36_variance_forest.svg)
 
 This formula explains random forests:
 

@@ -83,6 +83,112 @@ def draw_card(
     target.write_text("\n".join(parts) + "\n", encoding="utf-8")
 
 
+def draw_formula(
+    path: str,
+    title: str,
+    lines: list[str],
+    note: str,
+    palette_name: str,
+) -> None:
+    palette = PALETTE[palette_name]
+    width = 1120
+    line_count = len(lines)
+    height = 130 + 30 * (line_count - 1) + (28 if note else 0)
+    parts = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title desc">',
+        f"<title>{escape(title)}</title>",
+        f"<desc>{escape(' '.join(lines))}</desc>",
+        f'<rect x="0" y="0" width="{width}" height="{height}" rx="14" fill="{palette["bg"]}"/>',
+        f'<rect x="14" y="14" width="{width - 28}" height="{height - 28}" rx="11" fill="#ffffff" stroke="{palette["border"]}" stroke-width="2"/>',
+        f'<rect x="34" y="32" width="7" height="{height - 64}" rx="4" fill="{palette["accent"]}"/>',
+        f'<text x="58" y="55" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="{palette["label"]}">{escape(title)}</text>',
+    ]
+    y = 86
+    for line in lines:
+        parts.append(
+            f'<text x="58" y="{y}" font-family="SFMono-Regular, Menlo, Consolas, monospace" '
+            f'font-size="24" fill="{palette["formula"]}">{escape(line)}</text>'
+        )
+        y += 30
+    if note:
+        parts.append(f'<text x="58" y="{height - 30}" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="{palette["note"]}">{escape(note)}</text>')
+    parts.append("</svg>")
+
+    target = ROOT / path
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text("\n".join(parts) + "\n", encoding="utf-8")
+
+
+def inline_supervised_formulas() -> None:
+    en = "data/supervised_learning/formulas_en"
+    fr = "data/supervised_learning/formulas_fr"
+    entries = [
+        ("inline_01_target_probability.svg", "Predicted probability", "Probabilité prédite", ["P(y = 1 | X)"], "Output of a binary classifier.", "Sortie d'un classifieur binaire."),
+        ("inline_02_linear_score.svg", "Linear score", "Score linéaire", ["z = β₀ + β₁x₁ + ... + βₚxₚ"], "Unbounded score before the sigmoid.", "Score non borné avant la sigmoïde."),
+        ("inline_03_sigmoid.svg", "Sigmoid function", "Fonction sigmoïde", ["σ(z) = 1 / (1 + exp(-z))"], "Maps a real score to [0, 1].", "Transforme un score réel en valeur entre 0 et 1."),
+        ("inline_04_logistic_probability.svg", "Logistic probability", "Probabilité logistique", ["P(y = 1 | X) = σ(β₀ + β₁x₁ + ... + βₚxₚ)"], "Linear model plus sigmoid.", "Modèle linéaire puis sigmoïde."),
+        ("inline_05_odds.svg", "Odds", "Odds", ["odds = p / (1 - p)"], "Ratio between positive probability and negative probability.", "Rapport entre probabilité positive et probabilité négative."),
+        ("inline_06_log_odds.svg", "Log-odds", "Log-odds", ["log(odds) = log(p / (1 - p))"], "Logarithm of the odds.", "Logarithme des odds."),
+        ("inline_07_logit_model.svg", "Logit model", "Modèle logit", ["log(p / (1 - p)) = β₀ + β₁x₁ + ... + βₚxₚ"], "Coefficients are linear on log-odds.", "Les coefficients sont linéaires sur les log-odds."),
+        ("inline_08_threshold.svg", "Default threshold rule", "Règle de seuil par défaut", ["predict positive if P(y = 1 | X) > 0.5"], "The threshold can be changed for business costs.", "Le seuil peut être changé selon les coûts métier."),
+        ("inline_09_decision_boundary.svg", "Decision boundary", "Frontière de décision", ["β₀ + β₁x₁ + ... + βₚxₚ = 0"], "Because σ(0) = 0.5.", "Parce que σ(0) = 0.5."),
+        ("inline_10_coefficient_interpretation.svg", "Coefficient interpretation", "Interprétation d'un coefficient", ["log-odds change by βⱼ", "odds are multiplied by exp(βⱼ)"], "Holding the other variables constant.", "En gardant les autres variables constantes."),
+        ("inline_11_binary_target.svg", "Binary target", "Cible binaire", ["y ∈ {0, 1}"], "Bernoulli outcome.", "Variable de Bernoulli."),
+        ("inline_12_binary_cross_entropy.svg", "Binary cross-entropy / log-loss", "Binary cross-entropy / log-loss", ["J(β) = -(1/n) Σᵢ [ yᵢ log(ŷᵢ)", "      + (1 - yᵢ) log(1 - ŷᵢ) ]"], "Strongly penalizes confident wrong predictions.", "Pénalise fortement les prédictions confiantes mais fausses."),
+        ("inline_13_gradient_update.svg", "Gradient descent update", "Mise à jour par gradient", ["β_new = β_old - η · ∇J(β)"], "η is the learning rate.", "η est le learning rate."),
+        ("inline_14_logistic_gradient.svg", "Gradient intuition", "Intuition du gradient", ["Σᵢ (ŷᵢ - yᵢ) · xᵢⱼ"], "Prediction error times feature value.", "Erreur de prédiction multipliée par la variable."),
+        ("inline_15_standardization.svg", "Standardization", "Standardisation", ["x_scaled = (x - mean) / standard_deviation"], "Needed for stable gradient-based training.", "Utile pour stabiliser l'optimisation par gradient."),
+        ("inline_16_softmax.svg", "Softmax probability", "Probabilité softmax", ["P(y = k | X) = exp(zₖ) / Σⱼ exp(zⱼ)"], "Multi-class probabilities sum to 1.", "Les probabilités multi-classes somment à 1."),
+        ("inline_17_accuracy.svg", "Accuracy", "Accuracy", ["Accuracy = (TP + TN) / (TP + TN + FP + FN)"], "Correct predictions over all examples.", "Prédictions correctes sur tous les exemples."),
+        ("inline_18_precision.svg", "Precision", "Precision", ["Precision = TP / (TP + FP)"], "Trustworthiness of positive predictions.", "Fiabilité des prédictions positives."),
+        ("inline_19_recall.svg", "Recall", "Recall", ["Recall = TP / (TP + FN)"], "How many real positives were found.", "Combien de vrais positifs ont été trouvés."),
+        ("inline_20_specificity.svg", "Specificity", "Specificity", ["Specificity = TN / (TN + FP)"], "How many real negatives were rejected.", "Combien de vrais négatifs ont été rejetés."),
+        ("inline_21_fpr.svg", "False positive rate", "False positive rate", ["FPR = 1 - specificity = FP / (FP + TN)"], "X-axis of the ROC curve.", "Axe X de la courbe ROC."),
+        ("inline_22_f1.svg", "F1 score", "F1-score", ["F1 = 2 · precision · recall / (precision + recall)"], "Harmonic mean of precision and recall.", "Moyenne harmonique de precision et recall."),
+        ("inline_23_fbeta.svg", "F-beta score", "F-beta score", ["F_β = (1 + β²) · precision · recall", "      / (β² · precision + recall)"], "β > 1 favors recall; β < 1 favors precision.", "β > 1 favorise recall ; β < 1 favorise precision."),
+        ("inline_24_cost.svg", "Cost-based threshold", "Seuil par coût", ["Total cost = FP · Cost(FP) + FN · Cost(FN)"], "Choose the threshold that minimizes this.", "Choisir le seuil qui minimise ce coût."),
+        ("inline_25_auc.svg", "AUC interpretation", "Interprétation de l'AUC", ["AUC = P(score_positive > score_negative)"], "Ranking quality, not calibration.", "Qualité de ranking, pas calibration."),
+        ("inline_26_gini.svg", "Gini impurity", "Impureté de Gini", ["Gini(D) = 1 - Σᵢ pᵢ²"], "0 means pure.", "0 signifie pur."),
+        ("inline_27_weighted_gini.svg", "Weighted Gini split", "Gini pondéré du split", ["Gini_split = (|D_left|/|D|)Gini(D_left)", "           + (|D_right|/|D|)Gini(D_right)"], "CART minimizes weighted child impurity.", "CART minimise l'impureté pondérée des enfants."),
+        ("inline_28_entropy.svg", "Entropy", "Entropie", ["H(D) = -Σᵢ pᵢ log₂(pᵢ)"], "Alternative impurity measure.", "Autre mesure d'impureté."),
+        ("inline_29_information_gain.svg", "Information gain", "Information gain", ["IG(D, split) = H(D) - weighted_child_entropy"], "Decrease in entropy after splitting.", "Baisse d'entropie après le split."),
+        ("inline_30_tree_mse.svg", "Regression tree MSE", "MSE d'un arbre de régression", ["MSE(t) = (1/|D_t|) Σ_{i∈D_t}(yᵢ - ȳ_t)²"], "Regression trees minimize squared error.", "Les arbres de régression minimisent l'erreur quadratique."),
+        ("inline_31_ccp.svg", "Cost-complexity pruning", "Cost-complexity pruning", ["R_α(T) = R(T) + α|T|"], "α penalizes tree size.", "α pénalise la taille de l'arbre."),
+        ("inline_32_importance.svg", "Tree feature importance", "Importance des variables", ["Importance(feature) = Σ weighted impurity decreases"], "Computed over splits using that feature.", "Calculée sur les splits utilisant cette variable."),
+        ("inline_33_forest_vote.svg", "Random forest classification", "Classification par forêt aléatoire", ["ŷ = majority_vote(T₁(x), ..., T_B(x))"], "One vote per tree.", "Un vote par arbre."),
+        ("inline_34_forest_average.svg", "Random forest regression", "Régression par forêt aléatoire", ["ŷ = (1/B) Σ_b T_b(x)"], "Average of tree predictions.", "Moyenne des prédictions des arbres."),
+        ("inline_35_variance_mean.svg", "Variance of an average", "Variance d'une moyenne", ["Var(mean) = σ² / B"], "Only true for independent models.", "Vrai pour des modèles indépendants."),
+        ("inline_36_variance_forest.svg", "Variance with correlated trees", "Variance avec arbres corrélés", ["Var(forest) = ρσ² + ((1 - ρ)/B)σ²"], "Random features lower ρ.", "Les variables aléatoires diminuent ρ."),
+        ("inline_37_probability_definition.svg", "Probability shorthand", "Notation de probabilité", ["p = P(y = 1)"], "p is the predicted probability of the positive class.", "p est la probabilité prédite de la classe positive."),
+        ("inline_38_threshold_variable.svg", "Threshold decision rule", "Règle de décision avec seuil", ["predict positive if P(y = 1 | X) > threshold"], "Raising the threshold usually raises precision and lowers recall.", "Augmenter le seuil augmente souvent precision et baisse recall."),
+        ("inline_39_pr_perfect.svg", "Perfect precision-recall point", "Point precision-recall parfait", ["recall = 1  and  precision = 1"], "The ideal top-right point of a PR curve.", "Le point idéal en haut à droite d'une courbe PR."),
+        ("inline_40_pr_baseline.svg", "PR baseline", "Baseline de courbe PR", ["positive class rate = positives / total examples"], "Random ranking starts around the positive class rate.", "Un ranking aléatoire commence autour du taux de classe positive."),
+        ("inline_41_leaf_prediction.svg", "Regression tree leaf prediction", "Prédiction d'une feuille de régression", ["leaf prediction = mean target value in the leaf"], "Trees predict an average inside each leaf.", "L'arbre prédit la moyenne dans chaque feuille."),
+        ("inline_42_axis_splits.svg", "Axis-aligned tree splits", "Splits alignés sur les axes", ["x₁ ≤ threshold", "x₂ ≤ threshold"], "Decision trees split one feature at a time.", "Les arbres coupent une variable à la fois."),
+    ]
+    for filename, title_en, title_fr, lines, note_en, note_fr in entries:
+        draw_formula(f"{en}/{filename}", title_en, lines, note_en, "supervised")
+        draw_formula(f"{fr}/{filename}", title_fr, lines, note_fr, "supervised")
+
+
+def inline_unsupervised_formulas() -> None:
+    folder = "data/unsupervised_learning/formulas"
+    entries = [
+        ("inline_01_hard_clustering.svg", "Hard clustering", ["P(Cₖ | xᵢ) ∈ {0, 1}"], "Un point appartient à un seul cluster."),
+        ("inline_02_soft_clustering.svg", "Soft clustering", ["P(Cₖ | xᵢ) ∈ [0, 1]"], "Un point reçoit des probabilités d'appartenance."),
+        ("inline_03_wcss.svg", "WCSS / inertie", ["WCSS = Σ distances²(point, centroïde)"], "Mesure la compacité des clusters."),
+        ("inline_04_kmeans_objective.svg", "Objectif K-Means", ["min Σₖ Σ_{xᵢ∈Cₖ} ||xᵢ - μₖ||²"], "Minimise la distance au carré aux centroïdes."),
+        ("inline_05_euclidean.svg", "Distance euclidienne", ["d(x,c) = sqrt(Σⱼ (xⱼ - cⱼ)²)"], "Distance utilisée par K-Means."),
+        ("inline_06_standardization.svg", "Standardisation", ["x_scaled = (x - mean) / standard_deviation"], "Indispensable pour les méthodes basées sur les distances."),
+        ("inline_07_contamination.svg", "Contamination", ["contamination = 0.01"], "On s'attend à environ 1 % d'anomalies."),
+        ("inline_08_lof_normal.svg", "LOF normal", ["LOF ≈ 1"], "Densité similaire à celle des voisins."),
+        ("inline_09_lof_anomaly.svg", "LOF suspect", ["LOF >> 1"], "Beaucoup moins dense que ses voisins."),
+    ]
+    for filename, title, lines, note in entries:
+        draw_formula(f"{folder}/{filename}", title, lines, note, "unsupervised")
+
+
 def supervised_cards() -> None:
     logistic_rows_en = [
         ("Linear score", ["z = β₀ + β₁x₁ + ... + βₚxₚ"], "Unbounded score before converting to a probability."),
@@ -294,6 +400,8 @@ def unsupervised_cards() -> None:
 def main() -> None:
     supervised_cards()
     unsupervised_cards()
+    inline_supervised_formulas()
+    inline_unsupervised_formulas()
 
 
 if __name__ == "__main__":

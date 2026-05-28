@@ -59,9 +59,7 @@ Hard clustering :
 - L'affectation est stricte.
 - Exemple : K-Means.
 
-```text
-P(C_k | x_i) ∈ {0, 1}
-```
+![Formule du hard clustering](formulas/inline_01_hard_clustering.svg)
 
 Soft clustering :
 
@@ -69,9 +67,7 @@ Soft clustering :
 - L'affectation est probabiliste.
 - Exemple : Gaussian Mixture Model.
 
-```text
-P(C_k | x_i) ∈ [0, 1]
-```
+![Formule du soft clustering](formulas/inline_02_soft_clustering.svg)
 
 ![Comparaison entre hard clustering et soft clustering](figures/02_hard_vs_soft_clustering.svg)
 
@@ -110,15 +106,11 @@ Un point est affecté au cluster dont le centroïde est le plus proche.
 
 K-Means minimise l'inertie, aussi appelée WCSS :
 
-```text
-WCSS = somme des distances au carré entre chaque point et son centroïde
-```
+![Formule WCSS](formulas/inline_03_wcss.svg)
 
 Formellement :
 
-```text
-min Σ_k Σ_{x_i dans C_k} ||x_i - μ_k||²
-```
+![Formule de l'objectif K-Means](formulas/inline_04_kmeans_objective.svg)
 
 où :
 
@@ -131,17 +123,13 @@ K-Means veut donc des clusters compacts autour de leur centre.
 
 K-Means utilise généralement la distance euclidienne :
 
-```text
-d(x, c) = sqrt(Σ_j (x_j - c_j)^2)
-```
+![Formule de distance euclidienne](formulas/inline_05_euclidean.svg)
 
 Conséquence directe : les variables doivent être mises à l'échelle.
 
 Si une variable est mesurée en milliers d'euros et une autre entre `0` et `1`, la première dominera les distances. Il faut donc utiliser une standardisation :
 
-```text
-x_scaled = (x - mean) / standard_deviation
-```
+![Formule de standardisation](formulas/inline_06_standardization.svg)
 
 ### Choisir K : elbow method
 
@@ -966,9 +954,7 @@ La contamination est l'estimation de la proportion d'anomalies dans les données
 
 Exemple :
 
-```text
-contamination = 0.01
-```
+![Formule de contamination](formulas/inline_07_contamination.svg)
 
 signifie que l'on s'attend à environ 1% d'anomalies.
 
@@ -1135,17 +1121,13 @@ LOF regarde les `k` plus proches voisins.
 
 Si un point a une densité similaire à celle de ses voisins :
 
-```text
-LOF ≈ 1
-```
+![Formule LOF normal](formulas/inline_08_lof_normal.svg)
 
 Il est normal.
 
 Si un point est beaucoup moins dense que ses voisins :
 
-```text
-LOF >> 1
-```
+![Formule LOF suspect](formulas/inline_09_lof_anomaly.svg)
 
 Il est suspect.
 

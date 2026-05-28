@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="188" viewBox="0 0 1120 188" role="img" aria-labelledby="title desc">
+<title>Binary cross-entropy / log-loss</title>
+<desc>J(β) = -(1/n) Σᵢ [ yᵢ log(ŷᵢ)       + (1 - yᵢ) log(1 - ŷᵢ) ]</desc>
+<rect x="0" y="0" width="1120" height="188" rx="14" fill="#f8fbff"/>
+<rect x="14" y="14" width="1092" height="160" rx="11" fill="#ffffff" stroke="#b9d4f5" stroke-width="2"/>
+<rect x="34" y="32" width="7" height="124" rx="4" fill="#286fb4"/>
+<text x="58" y="55" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#24415f">Binary cross-entropy / log-loss</text>
+<text x="58" y="86" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="24" fill="#111827">J(β) = -(1/n) Σᵢ [ yᵢ log(ŷᵢ)</text>
+<text x="58" y="116" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="24" fill="#111827">      + (1 - yᵢ) log(1 - ŷᵢ) ]</text>
+<text x="58" y="158" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#50657a">Strongly penalizes confident wrong predictions.</text>
+</svg>

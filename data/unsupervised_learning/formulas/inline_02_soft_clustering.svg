@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="158" viewBox="0 0 1120 158" role="img" aria-labelledby="title desc">
+<title>Soft clustering</title>
+<desc>P(Cₖ | xᵢ) ∈ [0, 1]</desc>
+<rect x="0" y="0" width="1120" height="158" rx="14" fill="#fbfaf7"/>
+<rect x="14" y="14" width="1092" height="130" rx="11" fill="#ffffff" stroke="#dbc9a5" stroke-width="2"/>
+<rect x="34" y="32" width="7" height="94" rx="4" fill="#8a6424"/>
+<text x="58" y="55" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#55442b">Soft clustering</text>
+<text x="58" y="86" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="24" fill="#111827">P(Cₖ | xᵢ) ∈ [0, 1]</text>
+<text x="58" y="128" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" fill="#6f624d">Un point reçoit des probabilités d&#x27;appartenance.</text>
+</svg>
